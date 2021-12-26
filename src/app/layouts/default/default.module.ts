@@ -26,6 +26,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { AddEditEmployeeOfficialDetailsComponent } from 'src/app/pages/employee/add-edit-employee-official-details/add-edit-employee-official-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddEditEmployeePersonalDetailsComponent } from 'src/app/pages/employee/add-edit-employee-personal-details/add-edit-employee-personal-details.component';
+import { ApplyLeaveComponent } from 'src/app/pages/leave/apply-leave/apply-leave.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
+
+
 
 
 
@@ -46,7 +53,8 @@ import { AddEditEmployeePersonalDetailsComponent } from 'src/app/pages/employee/
     EmployeePersonalDetailsComponent,
     EmployeeDetailsComponent,
     AddEditEmployeeOfficialDetailsComponent,
-    AddEditEmployeePersonalDetailsComponent
+    AddEditEmployeePersonalDetailsComponent,
+    ApplyLeaveComponent
     
 
   ],
@@ -62,7 +70,12 @@ import { AddEditEmployeePersonalDetailsComponent } from 'src/app/pages/employee/
     MatFormFieldModule,
     MatTableModule,
     MatInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatButtonModule
+    
 
   ]
 })

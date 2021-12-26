@@ -11,6 +11,7 @@ import { EmployeeListComponent } from './pages/employee/employee-list/employee-l
 
 import { EmployeeOfficialDetailsComponent } from './pages/employee/employee-official-details/employee-official-details.component';
 import { EmployeePersonalDetailsComponent } from './pages/employee/employee-personal-details/employee-personal-details.component';
+import { ApplyLeaveComponent } from './pages/leave/apply-leave/apply-leave.component';
 
 const routes: Routes = [
     {path:'', component: LoginComponent},
@@ -43,6 +44,9 @@ const routes: Routes = [
     },
     {
       path:'editEmployeePersonalDetails/:id', component:AddEditEmployeePersonalDetailsComponent
+    },
+    {
+      path:'applyLeave', component:ApplyLeaveComponent
     }
   ]
   }];
