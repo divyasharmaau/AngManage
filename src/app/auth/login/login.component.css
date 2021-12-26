@@ -1,0 +1,14 @@
+mat-toolbar{
+    color: purple;
+    background-color: blanchedalmond;
+}
+.loginDiv mat-card{
+    padding: 0px;
+}
+.loginForm{
+    padding:20px;
+}
+
+.signInButton:hover{
+    color:purple;
+}
