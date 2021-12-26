@@ -1,0 +1,209 @@
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-lg p-3 mb-5" *ngIf="employeeCreated">
+                <span class="alert">{{successMessage}}</span>
+            </div>
+
+            <div class="card shadow-lg p-3 mb-5" *ngIf="!employeeCreated">
+                <div class="card-header border-0">
+                    <h2 class="card-title">{{formTitle}}</h2>
+                </div>
+
+                <div class="card-body">
+
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <!--Title-->
+                        <div class="row mt-4">
+                            <div class="form-group col-md-4">
+                                <label for="title">Title</label>
+                                <select class="form-control" formControlName="title">
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                    <option value="Ms">Ms</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Name Details-->
+                        <div class="row mt-4">
+                            <div class="form-group col-sm-12 col-lg-4">
+                                <label for="firstName">First Name</label>
+                                <input type="text" formControlName="firstName" class="form-control" required
+                                    placeholder="First Name" id="firstName">
+
+                                <div *ngIf="hasError('firstName')" class="help-block">
+                                    First Name is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-4">
+                                <label for="middleName">Middle Name</label>
+                                <input type="text" class="form-control" placeholder="Middle Name"
+                                    formControlName="middleName" id="middleName">
+                                <div *ngIf="hasError('middleName')" class="help-block">
+                                    Middle Name is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-4">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" placeholder="Last Name"
+                                    formControlName="lastName" id="lastName">
+                                <span *ngIf="hasError('lastName')"
+                                    class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                <div *ngIf="hasError('lastName')" class="help-block">
+                                    Last Name is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                        </div>
+                        <!--UserName and Email-->
+                        <div class="row mt-4">
+                            <div class="form-group col-sm-12 col-lg-6">
+                                <label for="userName">User Name</label>
+                                <input type="text" class="form-control" placeholder="User Name"
+                                    formControlName="userName" id="userName">
+                                <div *ngIf="hasError('userName')" class="help-block">
+                                    UserName is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-lg-6">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" placeholder="Email" formControlName="email"
+                                    id="email">
+                                <div *ngIf="hasError('email')" class="help-block">
+                                    Email is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                        </div>
+                        <!--Password and Confirm Password-->
+                        <div class="row mt-4">
+                            <div class="form-group col-sm-12 col-lg-6" [hidden]="hidden">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" placeholder="Password"
+                                    formControlName="password" id="password">
+                                <div *ngIf="hasError('password')" class="help-block">
+                                    Password is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-lg-6" *ngIf="!editMode">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control" placeholder="Confirm Password"
+                                    formControlName="confirmPassword" id="confirmPassword">
+                            </div>
+                        </div>
+                        <!--Joining Date and Job Title-->
+                        <div class="row mt-4">
+                            <div class="form-group col-sm-12 col-lg-6">
+                                <label for="joiningDate">Joining Date</label>
+                                <input type="date" class="form-control" placeholder="Joining Date"
+                                    formControlName="joiningDate" id="joiningDate">
+                                <div *ngIf="hasError('joiningDate')" class="help-block">
+                                    Joining Date is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-lg-6">
+                                <label for="jobTitle">Job Title</label>
+                                <input type="text" class="form-control" placeholder="Job Title"
+                                    formControlName="jobTitle" id="jobTitle">
+                                <div *ngIf="hasError('jobTitle')" class="help-block">
+                                    Job Title is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                        </div>
+                        <!--Status , Days Worked in a week , Number of Hours worked per day-->
+                        <div class="row mt-4">
+                            <div class="form-group col-sm-12 col-lg-4">
+                                <label for="status">Status</label>
+                                <select class="form-control" placeholder="Status" (change)="onSelectStatus($event)"
+                                    formControlName="status" id="status">
+                                    <option value="">---Select---</option>
+                                    <option value="Full-Time">Full-Time</option>
+                                    <option value="Part-Time">Part-Time</option>
+                                    <option value="Contract">Contract</option>
+                                    <option value="Casual">Casual</option>
+                                </select>
+                                <div *ngIf="hasError('status')" class="help-block">
+                                    Status is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-lg-4">
+                                <label for="daysWorkedInWeek">Days Worked In Week</label>
+                                <input type="number" class="form-control" placeholder="Days Worked In Week"
+                                    #daysWorkedInWeek [readonly]="isReadOnly()" formControlName="daysWorkedInWeek"
+                                    id="daysWorkedInWeek" name="daysWorkedInWeek">
+                                <div *ngIf="hasError('daysWorkedInWeek')" class="help-block">
+                                    Days Worked In Week is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-lg-4">
+                                <label for="numberOfHoursWorkedPerDay">Number Of Hours Worked Per Day</label>
+                                <input type="number" class="form-control" placeholder="Number Of Hours Worked Per Day"
+                                    #numberOfHoursWorkedPerDay [readonly]="isReadOnly()"
+                                    formControlName="numberOfHoursWorkedPerDay" id="numberOfHoursWorkedPerDay">
+                                <div *ngIf="hasError('numberOfHoursWorkedPerDay')" class="help-block">
+                                    Number Of Hours Worked Per Day is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                            <!-- <div class="form-group col-md-4">
+                                <label for="numberOfHoursWorkedPerDay">Number Of Hours Worked Per Day</label>
+                                <input type="number" class="form-control" placeholder="Number Of Hours Worked Per Day" 
+                                [(ngModel)] ="workHours"
+                                [readonly] = "isReadOnly()"
+                                formControlName="numberOfHoursWorkedPerDay" id="numberOfHoursWorkedPerDay">
+                                <div *ngIf="hasError('numberOfHoursWorkedPerDay')"
+                                    class="help-block">
+                                    Number Of Hours Worked Per Day is a required field: please insert a valid text.
+                                </div>
+                        </div> -->
+                        </div>
+                        <!--Department and  Manager-->
+                        <div class="row mt-4">
+                            <div class="form-group col-sm-12 col-lg-6">
+                                <label for="departmentId">Department</label>
+                                <select class="form-control" placeholder="department" formControlName="departmentId"
+                                    id="departmentId">
+                                    <option value="1">IT</option>
+                                    <option value="2">HR</option>
+                                    <!-- <option *ngFor="let dept of depts" [value]="dept.name">{{dept.name}}</option> -->
+                                </select>
+                                <div *ngIf="hasError('department')" class="help-block">
+                                    Department is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-lg-6"
+                                [ngClass]="{ 'has-error has-feedback' : hasError('manager') }">
+                                <label for="manager">Manager</label>
+                                <input type="text" class="form-control" placeholder="Manager" formControlName="manager"
+                                    id="manager">
+                                <span *ngIf="hasError('manager')"
+                                    class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                <div *ngIf="hasError('manager')" class="help-block">
+                                    Manager is a required field: please insert a valid text.
+                                </div>
+                            </div>
+                        </div>
+                        <!--Buttons-->
+                        <div class="row mt-4">
+                            <div class="col-sm-12 col-md-4"  style="width: fit-content;">
+                                <!-- <button type="submit" class="btn btn-outline-success m-5 ">Create</button> -->
+                                <button *ngIf="editMode" type="submit" [disabled] class="btn btn-outline-info m-2">Apply
+                                    Changes</button>
+                                <button *ngIf="!editMode" type="submit" [disabled]="form.invalid"
+                                    class="btn btn-success m-2">Create</button>
+                                <a class="btn btn-outline-secondary m-5 " [routerLink] = "['/home/dashboard']">Cancel</a>>
+
+                                <!-- <a class="btn btn-outline-secondary m-2"  *ngIf="editMode"
+                                    [routerLink]="['/home/employeeOfficialDetails' ,employee.id]">Cancel</a>
+                                <a class="btn btn-outline-secondary m-2" *ngIf="!editMode"
+                                [routerLink]="['/home/employeeList']">Cancel</a> -->
+                            </div>
+                            <!-- <div class="col-md-4">
+                            <a class="btn btn-outline-info m-5" [routerLink] = "['/addEditEmployeePersonal', employee.id]">Next</a>
+                        </div> -->
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

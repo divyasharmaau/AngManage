@@ -14,7 +14,7 @@ export interface EmployeePersonalDetails {
     country: string,
     zipCode: number,
     photoPath: string, //domainphotoPath
-   // existingPhotoPath: string,
+    existingPhotoPath: string,
     photo: string, //upload
     dateOfBirth: Date,
     nationality: string,

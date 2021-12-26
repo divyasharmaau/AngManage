@@ -18,7 +18,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { EmployeeDetailsComponent } from './pages/employee/employee-details/employee-details.component';
+
 
 
 
@@ -30,6 +30,8 @@ import { EmployeeDetailsComponent } from './pages/employee/employee-details/empl
   declarations: [
     AppComponent,
     LoginComponent,
+
+ 
 
 
   ],

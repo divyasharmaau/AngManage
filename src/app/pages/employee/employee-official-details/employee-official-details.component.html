@@ -14,19 +14,19 @@
             </div>
             <!--Name Details-->
             <div class="row  mt-5">   
-                <div class="form-group col-md-4 ">
+                <div class="form-group col-sm-12 col-lg-4">
                     <label for='firstName'>First Name</label>
                     <div>
                         <p  class="form-control">{{employeeDetails.firstName}}</p>
                     </div>
                 </div>
-                <div class="form-group col-md-4 ">
+                <div class="form-group col-sm-12 col-lg-4">
                     <label for='middleName'>Middle Name</label>
                     <div>
-                        <p class="form-control" placeholder="middle name" >{{employeeDetails.middleName}} </p>
+                        <p  class="form-control" placeholder="middle name" >{{employeeDetails.middleName}} </p>
                     </div>
                 </div>
-                <div class="form-group col-md-4 ">
+                <div class="form-group col-sm-12 col-lg-4">
                     <label for='lastName'>Last Name</label>
                     <div>
                         <p  class="form-control">{{employeeDetails.lastName}}</p>
@@ -34,29 +34,29 @@
                 </div>
              </div>
              <!--User Name and Email-->
-             <div class="row">
-                <div class="form-group col-md-6">
+             <div class="row mt-4">
+                <div class="form-group col-sm-12 col-lg-6">
                     <label for="userName">UserName</label>
                     <p class="form-control">{{employeeDetails.userName}}</p>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-sm-12 col-lg-6">
                     <label for="email">Email</label>
                     <p class="form-control">{{employeeDetails.email}}</p>
                 </div>
             </div>
             <!--Joining Date and job Title-->
-            <div class="row">
-                <div class="form-group col-md-6">
+            <div class="row mt-4">
+                <div class="form-group col-sm-12 col-lg-6">
                     <label for="joiningDate">Joining Date</label>
                     <p class="form-control">{{employeeDetails.joiningDate | date}}</p>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-sm-12 col-lg-6">
                     <label for="jobTitle">Job Title</label>
                     <p class="form-control">{{employeeDetails.jobTitle}}</p>
                 </div>
             </div>
-            <!--Status , Days worked in Week, Number of Hours Worked Per Day-->         
-            <div class="row">
+            <!--Status , Days worked in Week and Number of Hours Worked Per Day-->         
+            <div class="row mt-4">
                 <div class="form-group col-lg-4 col-sm-12">
                     <label for="status">Status</label>
                     <p class="form-control">{{employeeDetails.status}}</p>
@@ -71,23 +71,22 @@
                 </div>
             </div>
               <!--Department Name and Manager-->
-            <div class="row">
-                
-                <div class="form-group col-md-6">
+            <div class="row mt-4">
+                <div class="form-group col-sm-12 col-lg-6">
                     <label for="department.name">Department Name</label>
                     <p class="form-control">{{employeeDetails.department.name}}</p>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-sm-12 col-lg-6">
                     <label for="manager">Manager</label>
                     <p class="form-control">{{employeeDetails.manager}}</p>
                 </div>
             </div>
         </div>
         <!--Buttons-->
-        <div class="row">
+        <div class="row mt-3">
             <div class=" col-md-4">
-                <a  class="btn btn-outline-info m-2" [routerLink] = "['/admin/editAddEmployeeOfficial', employeeDetails.id]" >Edit</a>
-                <a class="btn btn-outline-secondary m-2" [routerLink]="['/home/employeeList']">Cancel</a>
+                <a  class="btn btn-outline-info m-2" [routerLink] = "['/home/editEmployeeOfficialDetails', employeeDetails.id]" >Edit</a>
+                <a class="btn btn-outline-secondary m-2" [routerLink]="['/home/dashboard']">Cancel</a>
              </div>   
             <!-- <div class="col-md-4"  *ngIf = "!employeeDetails.employeePersonalDetails">
                 <a class="btn btn-outline-success m-5 " 

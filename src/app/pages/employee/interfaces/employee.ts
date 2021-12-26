@@ -14,6 +14,7 @@ export interface Employee{
     numberOfHoursWorkedPerDay: number,
     manager: string,
     password: string,
+    confirmPassword:string,
     email: string,
     userName: string,
     //public bool EmailConfirmed { get; set; }

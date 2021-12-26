@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AddEditEmployeeOfficialDetailsComponent } from './pages/employee/add-edit-employee-official-details/add-edit-employee-official-details.component';
+import { AddEditEmployeePersonalDetailsComponent } from './pages/employee/add-edit-employee-personal-details/add-edit-employee-personal-details.component';
 import { EmployeeDetailsComponent } from './pages/employee/employee-details/employee-details.component';
 import { EmployeeListComponent } from './pages/employee/employee-list/employee-list.component';
 
@@ -16,7 +18,7 @@ const routes: Routes = [
     {
     path:'home' , component: DefaultComponent,
     children:[{
-      path:'', component: DashboardComponent
+      path:'dashboard', component: DashboardComponent
     }
     ,{ 
       path: 'employeeList', component:EmployeeListComponent
@@ -30,6 +32,18 @@ const routes: Routes = [
     { 
       path:'employeeDetails/:id', component:EmployeeDetailsComponent
     },
+    {
+      path:'addEmployeeOfficialDetails', component:AddEditEmployeeOfficialDetailsComponent
+    },
+    {
+      path:'editEmployeeOfficialDetails/:id', component:AddEditEmployeeOfficialDetailsComponent
+    },
+    {
+      path:'addEmployeePersonalDetails/:id', component:AddEditEmployeePersonalDetailsComponent
+    },
+    {
+      path:'editEmployeePersonalDetails/:id', component:AddEditEmployeePersonalDetailsComponent
+    }
   ]
   }];
 

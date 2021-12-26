@@ -1,0 +1,226 @@
+
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card shadow-lg p-3 mb-5" *ngIf="employeeCreatedOrUpdated">
+                <span class="alert">{{successMessage}}</span>
+            </div>
+
+            <div class="card shadow-lg p-3 mb-5" *ngIf="!employeeCreatedOrUpdated">
+                <div class="card-header border-0">
+                    <h2 class="card-title">{{formTitle}}</h2>
+                </div>
+            <div class="card-body">
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <input type="hidden" for="employeeId">
+                    <div class="row mt-3" >
+                    <div class="form-group col-md-4">
+                  
+                    <label for="fullName">Full Name</label>
+                    <input type="text" class="form-control" formControlName="fullName" id="fullName">
+                    <div *ngIf="hasError('fullName')"
+                            class="help-block">
+                        Full Name is a required field: please insert a valid text.
+                    </div>
+                        </div>
+                       
+                    </div>
+                    <div class="row mt-3">
+                        <div class="form-group col-md-6">
+                            <label for="photo">Photo</label>
+                            <input type="file" class="form-control" formControlName="photo"
+                                (change)="onSelectFile($event)">
+                        </div>
+
+                        <!--Preview -->
+                        <div *ngIf="editMode" class="form-group col-md-6">
+                            <div *ngIf="url">
+                                <img [src]="url" style="width: 150px; height:150px;" />
+                            </div>
+                            <div *ngIf="!url">
+                                <img [src]= "this.empOfficialDetails.employeePersonalDetails.photoPath"
+                                 style="width: 150px; height:150px;" />
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row mt-3 mt-3">
+                        <div class="form-group col-md-6">
+                                <label for="dateOfBirth">Date of Birth</label>
+                                <input type="date" class="form-control" formControlName="dateOfBirth" id="dateOfBirth">
+                        <div *ngIf="hasError('dateOfBirth')"
+                            class="help-block">
+                            Date of Birth is a required field: please insert a valid text.
+                        </div>
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label for="nationality">Nationality</label>
+                            <input class="form-control" formControlName="nationality" id="nationality">
+                                <!-- <div *ngIf="hasError('email')"
+                                    class="help-block">
+                                    Email is a required field: please insert a valid text.
+                                </div> -->
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="form-group col-md-4">
+                            <label for="maritalStatus">Marital status</label>
+                            <input class="form-control" formControlName="maritalStatus" id="maritalStatus">
+                        </div>
+                        <!-- <div class="form-group col-md-4">
+                            <label for="bloodGroup">Blood Group</label>
+                            <input class="form-control" formControlName="bloodGroup" id="bloodGroup">
+                        </div> -->
+                        <div class="form-group col-md-4">
+                            <label for="gender">Gender</label>
+                            <input class="form-control" formControlName="gender" id="gender">
+                        </div>
+                    </div>
+
+
+                        <!--Bank Details-->
+                        <div class="row mt-3">
+                            <div class="form-group col-md-6">
+                                <label for="bankName">Bank Name</label>
+                                <input class="form-control" formControlName="bankName" id="bankName">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="branch">Branch Name</label>
+                                <input class="form-control" formControlName="branch" id="branch">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-md-4">
+                                <label for="accountName">Account Name</label>
+                                <input class="form-control" formControlName="accountName" id="accountName">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="bsb">BSB</label>
+                                <input class="form-control" formControlName="bsb" id="bsb">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="accountNumber">Account Number</label>
+                                <input class="form-control" formControlName="accountNumber" id="accountNumber">
+
+                            </div>
+                        </div>
+
+                         <!--House Address of Employee-->
+                        <div class="row mt-3">
+                            <div class="form-group col-md-6">
+                                <label for="houseNumber">House Number</label>
+                                <input class="form-control" formControlName="houseNumber" id="houseNumber">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="street">Street Name</label>
+                                <input class="form-control" formControlName="street" id="street">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-md-6">
+                                <label for="city">City</label>
+                                <input class="form-control" formControlName="city" id="city">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="state">State</label>
+                                <input class="form-control" formControlName="state" id="state">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-md-6">
+                                <label for="country">Country</label>
+                                <input class="form-control" formControlName="country" id="country">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="zipCode">Zip Code</label>
+                                <input class="form-control" formControlName="zipCode" id="zipCode">
+                            </div>
+                        </div>
+
+                        <!---Emergency Contact Details-->
+
+                        <div class="row mt-3">
+                            <div class="form-group col-md-6">
+
+                                <label for="emergencyContact">Emergency Contact</label>
+                                <input class="form-control" formControlName="emergencyContact" id="emergencyContact">
+                            </div>
+                            <div class="form-group col-md-6">
+
+                                <label for="relationship">Relationship</label>
+                                <input class="form-control" formControlName="relationship" id="relationship">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-md-12">
+                                <label for="emergencyContactPhoneNumber">Emergency Contact PhoneNumber</label>
+                                <input class="form-control" formControlName="emergencyContactPhoneNumber"
+                                    id="emergencyContactPhoneNumber">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactHouseNumber">Emergency Contact HouseNumber</label>
+                                <input class="form-control" formControlName="emergencyContactHouseNumber"
+                                    id="emergencyContactHouseNumber">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactStreet">Emergency Contact Street</label>
+                                <input class="form-control" formControlName="emergencyContactStreet"
+                                    id="emergencyContactStreet">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactCity">Emergency Contact City</label>
+                                <input class="form-control" formControlName="emergencyContactCity"
+                                    id="emergencyContactCity">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactState">Emergency Contact State</label>
+                                <input class="form-control" formControlName="emergencyContactState"
+                                    id="emergencyContactState">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="form-group col-md-6">
+
+                                <label for="emergencyContactCountry">Emergency Contact Country</label>
+                                <input class="form-control" formControlName="emergencyContactCountry"
+                                    id="emergencyContactCountry">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="emergencyContactZipCode">Emergency Contact ZipCode</label>
+                                <input class="form-control" formControlName="emergencyContactZipCode"
+                                    id="emergencyContactZipCode">
+                            </div>
+                        </div>
+                  
+              
+                    <div class="row mt-3 mt-3">
+                        <div class="col-md-4">
+                            <!-- <button type="submit" class="btn btn-outline-success m-5 ">Create</button> -->
+                            <button *ngIf="editMode" type="submit" [disabled] class="btn btn-outline-info m-5">Apply Changes</button>
+                            <button *ngIf="!editMode" type="submit" [disabled]="form.invalid" class="btn btn-success m-5">Create</button>
+                            <a class="btn btn-outline-secondary m-5 " [routerLink] = "['/home/dashboard']">Cancel</a>>
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <!-- <button *ngIf="editMode" type="submit"  class="btn btn-outline-info m-5">Cancel</button> -->
+                            <!-- <a *ngIf="editMode" class="btn btn-outline-secondary m-5 " [routerLink] = "['/home/employeePersonalDetails' , employee.id]">Cancel</a> -->
+                            <!-- <a *ngIf="!editMode" class="btn btn-outline-secondary m-5 " [routerLink] = "['/home/employeeOfficialDetails']">Cancel 2</a> -->
+                        </div>
+                    </div>
+                </form> 
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

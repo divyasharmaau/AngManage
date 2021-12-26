@@ -23,6 +23,9 @@ import { EmployeePersonalDetailsComponent } from 'src/app/pages/employee/employe
 import { EmployeeDetailsComponent } from 'src/app/pages/employee/employee-details/employee-details.component';
 
 import {MatExpansionModule} from '@angular/material/expansion';
+import { AddEditEmployeeOfficialDetailsComponent } from 'src/app/pages/employee/add-edit-employee-official-details/add-edit-employee-official-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddEditEmployeePersonalDetailsComponent } from 'src/app/pages/employee/add-edit-employee-personal-details/add-edit-employee-personal-details.component';
 
 
 
@@ -42,6 +45,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     EmployeeOfficialDetailsComponent,
     EmployeePersonalDetailsComponent,
     EmployeeDetailsComponent,
+    AddEditEmployeeOfficialDetailsComponent,
+    AddEditEmployeePersonalDetailsComponent
     
 
   ],
@@ -49,6 +54,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     CommonModule,
     RouterModule,
     SharedModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     MatDividerModule,
     MatPaginatorModule,
