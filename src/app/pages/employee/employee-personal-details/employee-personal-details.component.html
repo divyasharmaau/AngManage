@@ -1,0 +1,194 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card shadow-lg p-3 mb-5">
+                <div class="card-body">
+                <input type="hidden" for="employeePersonalDetails.id">
+
+                <div class="row mt-5">
+                    <div class="form-group col-md-6">
+                        <label for="fullName">Employee Name</label>
+                        <p type="text" class="form-control"  id="fullName">{{employeePersonalDetails.fullName}} </p>
+                    </div>
+                   <div class="form-group col-md-6" >
+                        <label for="photo"> 
+                            <div *ngIf = "employeePersonalDetails.photoPath" >
+                                <img src={{employeePersonalDetails.photoPath}} width="150px" />
+                            </div>
+                            <div *ngIf = "!employeePersonalDetails.photoPath" >
+                                <img src= "/assets/img/avatar.png" width="150px" />
+                            </div>
+                        </label>
+                     
+                    </div>
+
+                </div>
+
+                <!--Personal Details-->
+
+                <div class="row mt-3">
+                    <div class="form-group col-md-6">
+                        <label for="dateOfBirth">DateOfBirth</label>
+                        <p  class="form-control"   id="dateOfBirth">{{employeePersonalDetails.dateOfBirth | date: 'dd/MM/yyyy'}}</p>
+                    </div>
+                 
+                    <div class="form-group col-md-6">
+                        <label for="nationality">Nationality</label>
+                        <p class="form-control" id="nationality">{{employeePersonalDetails.nationality}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group  col-lg-6 col-sm-12">
+                        <label for="maritalStatus">Marital status</label>
+                        <p class="form-control"  id="maritalStatus">{{employeePersonalDetails.maritalStatus}}</p>
+                    </div>
+                    <!-- <div class="form-group col-md-4">
+                        <label for="bloodGroup">bloodGroup</label>
+                        <input class="form-control" formControlName="bloodGroup" id="bloodGroup">
+                    </div> -->
+                    <div class="form-group col-lg-6 col-sm-12 ">
+                        <label for="gender">Gender</label>
+                        <p class="form-control"  id="gender">{{employeePersonalDetails.gender}}</p>
+                    </div>
+                </div>
+
+                <!--Bank Details-->
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="bankName">Bank Name</label>
+                        <p class="form-control"  id="bankName">{{employeePersonalDetails.bankName}}</p>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="branch">Branch Name</label>
+                        <p class="form-control" id="branch">{{employeePersonalDetails.branch}}</p>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group  col-lg-4 col-sm-12   ">
+                        <label for="accountName">Account Name</label>
+                        <p class="form-control"  id="accountName">{{employeePersonalDetails.accountName}}</p>
+                    </div>
+                    <div class="form-group  col-lg-4 col-sm-12 ">
+                        <label for="bsb">BSB</label>
+                        <p class="form-control"  id="bsb">{{employeePersonalDetails.bsb}}</p>
+                    </div>
+                    <div class="form-group  col-lg-4 col-sm-12 ">
+                        <label for="accountNumber">Account Number</label>
+                        <p class="form-control"  id="accountNumber">{{employeePersonalDetails.accountNumber}}</p>
+
+                    </div>
+                </div>
+
+
+                <!--House Address of Employee-->
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="houseNumber">House Number</label>
+                        <p class="form-control"  id="houseNumber">{{employeePersonalDetails.houseNumber}}</p>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="street">Street Name</label>
+                        <p class="form-control"  id="street">{{employeePersonalDetails.street}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="city">City</label>
+                        <p class="form-control" id="city">{{employeePersonalDetails.city}}</p>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="state">State</label>
+                        <p class="form-control"  id="state">{{employeePersonalDetails.state}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="country">Country</label>
+                        <p class="form-control"  id="country">{{employeePersonalDetails.country}}</p>
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                        <label for="zipCode">Zip Code</label>
+                        <p class="form-control"  id="zipCode">{{employeePersonalDetails.zipCode}}</p>
+                    </div>
+                </div>
+
+
+                <!---Emergency Contact Details-->
+
+                <div class="row">
+                    <div class="form-group col-lg-6 col-sm-12">
+
+                        <label for="emergencyContact">Emergency Contact</label>
+                        <p class="form-control"  id="emergencyContact">{{employeePersonalDetails.emergencyContact}}</p>
+                    </div>
+                    <div class="form-group col-lg-6 col-sm-12">
+                        
+                        <label for="relationship">Relationship</label>
+                        <p class="form-control"  id="relationship">{{employeePersonalDetails.relationship}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label for="emergencyContactPhoneNumber">Emergency Contact PhoneNumber</label>
+                        <p class="form-control" 
+                            id="emergencyContactPhoneNumber">{{employeePersonalDetails.emergencyContactPhoneNumber}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label for="emergencyContactHouseNumber">Emergency Contact HouseNumber</label>
+                        <p class="form-control"
+                            id="emergencyContactHouseNumber">{{employeePersonalDetails.emergencyContactHouseNumber}}</p>
+                    </div>
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label for="emergencyContactStreet">Emergency Contact Street</label>
+                        <p class="form-control" 
+                            id="emergencyContactStreet">{{employeePersonalDetails.emergencyContactStreet}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label for="emergencyContactCity">Emergency Contact City</label>
+                        <p class="form-control"  id="emergencyContactCity">{{employeePersonalDetails.emergencyContactCity}}</p>
+                    </div>
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label for="emergencyContactState">Emergency Contact State</label>
+                        <p class="form-control"  id="emergencyContactState">
+                            {{employeePersonalDetails.emergencyContactState}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label for="emergencyContactCountry">Emergency Contact Country</label>
+                        <p class="form-control" 
+                            id="emergencyContactCountry">{{employeePersonalDetails.emergencyContactCountry}}</p>
+                    </div>
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label for="emergencyContactZipCode">Emergency Contact ZipCode</label>
+                        <p class="form-control" 
+                            id="emergencyContactZipCode">{{employeePersonalDetails.emergencyContactZipCode}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <a [routerLink]="['/admin/editAddEmployeePersonal/' , employeePersonalDetails.id]" class="btn btn-outline-success m-2 ">Edit</a>
+                        <a [routerLink]="['/home/employeeList/']" class="btn btn-outline-success  ">Cancel</a>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+
+
+
+

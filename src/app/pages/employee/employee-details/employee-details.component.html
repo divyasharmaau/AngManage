@@ -1,0 +1,63 @@
+<!-- <p>employee-details works!</p>
+
+<div class="example-action-buttons">
+    <button mat-button (click)="accordion.openAll()">Expand All</button>
+    <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+  </div> -->
+  <mat-accordion  class="example-headers-align" multi="true">
+    <mat-expansion-panel (opened)="panelOpenStateOff= true"
+                         (closed)="panelOpenStateOff = false">
+        <mat-expansion-panel-header (click)= "showOfficial = !showOfficial">
+            <mat-panel-title >
+                Employee &nbsp; Official &nbsp; Details
+            </mat-panel-title>
+            <mat-panel-description >
+              Click to {{panelOpenStateOff ? 'close' :'open'}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-employee-official-details *ngIf ="showOfficial" ></app-employee-official-details>
+        <!-- <mat-action-row>
+            <button mat-button   (closed)="panelOpenStateOff = false" >Close</button>
+        </mat-action-row> -->
+    </mat-expansion-panel>
+   
+    
+    <mat-expansion-panel *ngIf = "!flag" mt-4 (opened) = "panelOpenStatePers = true"
+                         (closed) = "panelOpenStatePers = false">
+        <mat-expansion-panel-header (click) ="showPersonal = !showPersonal">
+            <mat-panel-title >
+                Employee Personal Details
+            </mat-panel-title> 
+            <mat-panel-description >
+               Click to {{panelOpenStatePers ? 'close' : 'open'}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-employee-personal-details *ngIf = "showPersonal"></app-employee-personal-details>
+    
+    </mat-expansion-panel>
+
+    
+    <!--Create Personal details-->
+    <mat-expansion-panel *ngIf = "flag" mt-4 (opened) = "panelOpenStateCreatePersonalDetails = true"
+                         (closed) = "panelOpenStateCreatePersonalDetails = false">
+        <mat-expansion-panel-header (click) ="showCreatePersonal = !showCreatePersonal">
+            <mat-panel-title >
+               Create Employee Personal Details
+            </mat-panel-title> 
+            <mat-panel-description >
+               Click to {{panelOpenStateCreatePersonalDetails ? 'close' : 'open'}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <!-- <app-add-edit-employee-personal-details *ngIf = "showCreatePersonal"></app-add-edit-employee-personal-details> -->
+       
+        <mat-action-row>
+            <button mat-button>Button</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+    
+    </mat-accordion>
+    
+    <!-- <a  *ngIf = "flag"> create employee personal details</a> -->
+    
+
