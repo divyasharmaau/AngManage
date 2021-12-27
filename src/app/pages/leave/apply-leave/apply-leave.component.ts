@@ -6,7 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
 import { Leave } from '../interfaces/leave';
-import { LeaveService } from '../leave.service';
+import { LeaveService } from '../services/leave.service';
+
 
 @Component({
   selector: 'app-apply-leave',

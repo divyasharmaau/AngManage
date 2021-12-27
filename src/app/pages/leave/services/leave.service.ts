@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { stringify } from 'querystring';
-import { AppUserLeaveModel } from './interfaces/appUserLeaveModel';
-import { EmployeeLeave } from './interfaces/employeeLeave';
-import { Leave } from './interfaces/leave';
+import { AppUserLeaveModel } from '../interfaces/appUserLeaveModel';
+import { EmployeeLeave } from '../interfaces/employeeLeave';
+import { Leave } from '../interfaces/leave';
+
+
 
 
 @Injectable({

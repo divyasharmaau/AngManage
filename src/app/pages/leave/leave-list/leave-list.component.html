@@ -1,0 +1,164 @@
+<div class="container-fluid">
+  
+    <div class="col-sm-12">
+
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Search Leave List</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="p-3">
+            <mat-form-field appearance="standard">
+              <mat-label>Name</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+            </mat-form-field>
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field class="full-width" appearance="standard">
+                  <mat-label>From Date</mat-label>
+                  <!-- <input type="date" class="form-control" formControlName="dateOfBirth" id="dateOfBirth"> -->
+                  <!-- <input matInput  [min]="minDate" [max]="maxDate" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                        [matDatepicker]="picker">  -->
+                  <input matInput [matDatepicker]="picker" (dateInput)="inputEvent($event)"
+                    (dateChange)="changeEvent($event)">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <!-- <input matInput [matDatepicker]="picker" placeholder="Input & change events"
+            (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)"> -->
+    
+    
+              <div class="col-md-4">
+                <mat-form-field class="full-width" appearance="standard">
+                  <mat-label>Till Date</mat-label>
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerTillDate"
+                    (dateInput)="inputEvent($event)" (dateChange)="changeEvent($event)">
+                  <mat-datepicker-toggle matSuffix [for]="pickerTillDate"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerTillDate></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="full-width" appearance="standard">
+                  <mat-label>Leave Type</mat-label>
+                  <select (change)="searchLeaveType($event)" matNativeControl id="mySelectId">
+                    <option value="" disabled selected></option>
+                    <option value="Annual Leave">Annual Leave</option>
+                    <option value="Sick Leave">Sick Leave</option>
+                  </select>
+                </mat-form-field>
+              </div>
+            </div>
+    
+    
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <mat-checkbox class="checkbox-margin" [(ngModel)]="allChecked"
+                  (change)="applyFilterChecked('leaveStatus', allChecked ? '':'')">All</mat-checkbox>
+
+                <mat-checkbox class="checkbox-margin" [(ngModel)]="approveChecked"
+                  (change)="applyFilterChecked('leaveStatus', approveChecked ? 'Approved':'')">Approved</mat-checkbox>
+
+                <mat-checkbox class="checkbox-margin" [(ngModel)]="declineChecked"
+                  (change)="applyFilterChecked('leaveStatus', declineChecked ? 'Declined':'')">Declined</mat-checkbox>
+
+                <mat-checkbox class="checkbox-margin" [(ngModel)]="pendingChecked"
+                  (change)="applyFilterChecked('leaveStatus', pendingChecked ? 'Pending':'')">Pending</mat-checkbox>
+                <!-- <mat-checkbox [formControl]="item1" (change)="onChkChildChange($event)"> Item 1 </mat-checkbox> -->
+              </div>
+            </div>
+          </mat-card-content>
+    
+        </mat-card>
+      </div>
+    
+  
+    <mat-card class="mt-5">
+      <mat-card-header>
+        <mat-card-title> Leave List </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="p-3">
+  
+        <div class="example-container mat-elevation-z8">
+          <div class="example-table-container">
+            <table mat-table [dataSource]="employeeLeaves" class="example-table" matSort matSortActive="leaveStatus"
+              matSortDirection="desc">
+  
+  
+              <!-- Full Name  Column-->
+              <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee</th>
+                <td mat-cell *matCellDef="let employeeLeave"><a>{{employeeLeave.fullName}}</a></td>
+              </ng-container>
+              <!-- From Date Column-->
+              <ng-container matColumnDef="fromDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>From Date</th>
+                <td mat-cell *matCellDef="let employeeLeave">{{employeeLeave.fromDate }}</td>
+              </ng-container>
+              <!-- Till Date Column-->
+              <ng-container matColumnDef="tillDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Till Date</th>
+                <td mat-cell *matCellDef="let employeeLeave">{{employeeLeave.tillDate | date: 'dd/MM/yyyy'}}</td>
+              </ng-container>
+  
+              <!-- Leave Type Column -->
+              <ng-container matColumnDef="leaveType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Leave Type</th>
+                <td mat-cell *matCellDef="let employeeLeave">{{employeeLeave.leaveType}}</td>
+              </ng-container>
+  
+              <!-- Reason Column -->
+              <ng-container matColumnDef="reason">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Reason</th>
+                <td mat-cell *matCellDef="let employeeLeave">{{employeeLeave.reason}}</td>
+              </ng-container>
+  
+              <!-- Status Column -->
+              <ng-container matColumnDef="leaveStatus">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                <td mat-cell *matCellDef="let employeeLeave">{{employeeLeave.leaveStatus}}</td>
+              </ng-container>
+  
+              <!-- Number Of Leave Days Column -->
+              <ng-container matColumnDef="numberOfLeaveDays">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Number Of Days</th>
+                <td mat-cell *matCellDef="let employeeLeave">{{employeeLeave.numberOfLeaveDays}}</td>
+              </ng-container>
+  
+              <!-- Leave Balance Column -->
+              <ng-container matColumnDef="leaveBalance">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Leave Balance(Days)</th>
+                <td mat-cell *matCellDef="let employeeLeave" ng-If="employeeLeave.leaveType == 'Annual Leave'">
+                  {{employeeLeave.balanceAnnualLeave}}
+                </td>
+                <td mat-cell *matCellDef="let employeeLeave" ng-If="employeeLeave.leaveType == 'Sick Leave'">
+                  {{employeeLeave.balanceSickLeave}}
+                </td>
+              </ng-container>
+  
+              <!-- Leave Details -->
+              <ng-container matColumnDef="leaveDetails">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Leave Details</th>
+                <td mat-cell *matCellDef="let employeeLeave"><a
+                    [routerLink]="['/admin/editLeaveAdmin' ,employeeLeave.leaveId]">Leave Details</a></td>
+              </ng-container>
+  
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  
+              <!--Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[ 10, 20]" showFirstLastButtons>
+            </mat-paginator>
+  
+          </div>
+  
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+

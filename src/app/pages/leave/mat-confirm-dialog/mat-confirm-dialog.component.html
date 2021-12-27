@@ -1,0 +1,20 @@
+
+<!-- <div class="container">
+    <mat-icon id="close-icon" (click)="closeDialog()" style="float:right" >close</mat-icon>
+    <span class="content-span full-width">{{data.message}}</span>
+</div>
+<div class="buttonContainer" style="margin-top: 5px;">
+    <button style="padding-top: 3px; background-color: red;" mat-flat-button id="yesButton" [mat-dialog-close] ="true">Yes</button>
+    <button style="padding-top: 3px; background-color: green;" mat-flat-button id="noButton" [mat-dialog-close] ="false">No</button>
+    
+</div> -->
+
+
+<div class="confirm-dialog-container">
+    <div class="content-container">
+      <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+      <span class="content-span full-width">{{data.message}}</span>
+    </div>
+    <button mat-flat-button id="no-button" [mat-dialog-close]="false">NO</button>
+    <button mat-flat-button id="yes-button" [mat-dialog-close]="true">YES</button>
+</div>

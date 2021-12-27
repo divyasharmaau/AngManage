@@ -27,10 +27,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+  
+  
  
 
  
@@ -52,9 +56,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule 
+    HttpClientModule
   
-
+ 
 
   ],
   providers: [],
