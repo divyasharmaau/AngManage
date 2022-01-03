@@ -21,6 +21,9 @@ export class BaseErrorFormComponent {
         var e = this.getControl(later);
         return e && (e.dirty || e.touched) && e.invalid;
     }
-
+    // hasFeedback(later:string){
+    //     var e = this.getControl(later);
+    //     return e && (!e.dirty || !e.touched) && !e.invalid;
+    // }
     
 }

@@ -3,5 +3,7 @@ export interface TokenResponse{
     expiration: number,
     refresh_token: string,
     role_name: string,
-    userId:string
+    userId:string,
+    profile_picture_path:string,
+    user_name:string
 }

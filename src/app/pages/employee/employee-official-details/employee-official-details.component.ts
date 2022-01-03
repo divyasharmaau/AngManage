@@ -15,6 +15,7 @@ export class EmployeeOfficialDetailsComponent implements OnInit {
 
   //employeeDetails : Employee;
    employeeDetails = <Employee>{};
+   employeeProfilePhoto: string = "";
 
   close: boolean = false;
   constructor(private employeeService : EmployeeService,
@@ -33,13 +34,32 @@ export class EmployeeOfficialDetailsComponent implements OnInit {
   }
 
   showEmployeeOfficialDetails(id: string){
-    alert("employee official");
     this.employeeService.getEmployeeOfficialDetails(id)
-    .subscribe(data =>
-      this.employeeDetails = data
+    .subscribe(data =>{
+      this.employeeDetails = data;
+      this.employeeProfilePhoto = this.employeePhoto(this.employeeDetails);
+    }
+     
       );
 
   }
+
+  employeePhoto(employeeDetails: Employee):string{
+    if(employeeDetails.employeePersonalDetails == null)
+    {
+      return "/assets/img/avatar.png";
+    }
+    if(employeeDetails.employeePersonalDetails.photoPath == null)
+    {
+      return "/assets/img/avatar.png";
+    }
+  
+      return  employeeDetails.employeePersonalDetails.photoPath;
+   
+  }
+
+
+
 
   clickCloseOfficial(){
     alert("clickCloseOfficial");

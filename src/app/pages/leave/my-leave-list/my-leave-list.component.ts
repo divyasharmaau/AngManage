@@ -9,6 +9,7 @@ import { LeaveService } from '../services/leave.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import * as moment from 'moment';
 
 
 @Component({
@@ -33,11 +34,12 @@ export class MyLeaveListComponent implements OnInit {
 
   minDate: Date;
   maxDate: Date;
+  fromdate: any;
 
  // public employeeLeaves: MatTableDataSource<AppUserLeaveModel>;
 
 
-  public displayedColumns = ['fullName', 'fromDate', 'tillDate','leaveType','numberOfLeaveDays','reason','leaveStatus','leaveDetails','edit','delete' ];
+  public displayedColumns = ['fullName', 'fromDate', 'tillDate','leaveType','numberOfLeaveDays','reason','leaveStatus','leaveDetails','delete' ];
   //the source where we will get the data
   //public dataSource = new MatTableDataSource<AppUserLeaveModel>();
   public employeeLeaves: MatTableDataSource<AppUserLeaveModel>;
@@ -61,7 +63,7 @@ ngOnInit(): void{
   this.employeeId = empId;
 //   var Lid = +this.activatedRoute.snapshot.paramMap.get('employeeLeave.leaveId');
 // alert(Lid+ "hello");
-  this.showAllMyLeaves(empId);
+  this.showAllMyLeaves(empId, null);
 
   // this.employeeLeaves.sort = this.sort;
 
@@ -71,8 +73,8 @@ ngOnInit(): void{
   // this.sort.sortChange.emit(sortState);
 }
   
-showAllMyLeaves(id:string){
-  this.leaveService.getAllMyLeaves(id)
+showAllMyLeaves(id:string, fromDate:any){
+  this.leaveService.getAllMyLeaves(id, fromDate)
   .subscribe(data =>{
     this.employeeLeaves = new MatTableDataSource<AppUserLeaveModel>(data);
     this.employeeLeaves.paginator = this.paginator;
@@ -96,12 +98,47 @@ showAllMyLeaves(id:string){
 // }
 
 // }
+// changeEvent(event){
 
+//   let filterValue = moment(event.value).format("YYYY-MM-DD");
+//   this.fromDate
+//   this.showAllLeaves(filterValue);
+//   this.employeeLeaves.filter = filterValue;
+//   if(this.employeeLeaves.paginator){
+//     this.employeeLeaves.paginator.firstPage();
+//   }
+
+  
+// }
+// changeEvent(event){
+//   alert("change event my Laeve list");
+//   let filterValue = moment(event.value).format("YYYY-MM-DD");
+//   this.leaveService.getAllMyLeaves(filterValue);
+//   this.employeeLeaves.filter = filterValue;
+//   if(this.employeeLeaves.paginator){
+//     this.employeeLeaves.paginator.firstPage();
+//   }
+// }
+inputEvent(event){
+  // Return date object
+  //alert("input Event"); 
+  console.log(event.value);
+}
+
+changeEvent(event){
+  let filterValue = moment(event.value).format("YYYY-MM-DD");
+  this.showAllMyLeaves(this.employeeId,filterValue);
+  this.employeeLeaves.filter = filterValue;
+  if(this.employeeLeaves.paginator){
+    this.employeeLeaves.paginator.firstPage();
+  }
+
+  
+}
 searchLeaveType(event: Event){
   const filterValue = (event.target as HTMLOptionElement).value;
   alert(filterValue + "serach");
   this.employeeLeaves.filter = filterValue;
-  alert(  this.employeeLeaves.filter + "  this.employeeLeaves.filter");
   if (this.employeeLeaves.paginator) {
     this.employeeLeaves.paginator.firstPage();
   }
@@ -121,7 +158,8 @@ deleteMyLeave(leaveId){
     if(res){
       this.leaveService.deleteLeave(leaveId).subscribe(data => {
         this.leaveDeleted = true;
-        this.showAllMyLeaves(this.employeeId);
+        this.leaveService.getAllMyLeavesDelete(this.employeeId);
+        //this.showAllMyLeaves(this.employeeId);
       })
     }
   })

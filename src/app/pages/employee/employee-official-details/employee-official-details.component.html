@@ -3,10 +3,11 @@
         <div class="card-body">
             <!--Image and Full Name-->
             <div class="row mt-3">
-                <div class="form-group col-lg-6 col-sm-12 " *ngIf ="employeeDetails.employeePersonalDetails">           
+
+                <img src = {{employeeProfilePhoto}} style="width:170px;  ; border-radius: 50%;"  />
+                <!-- <div class="form-group col-lg-6 col-sm-12 " *ngIf ="employeeDetails.employeePersonalDetails">           
                     <img src= {{employeeDetails.employeePersonalDetails.photoPath}} style="width:170px;  ; border-radius: 50%;" />
- 
-                </div>
+                </div> -->
                 <div class="form-group col-md-6" style="margin-top: 50px;;">
                     <h2>{{employeeDetails.firstName | titlecase}} {{employeeDetails.lastName | titlecase}} </h2>
                     <h3>{{employeeDetails.department.name | uppercase}}</h3>

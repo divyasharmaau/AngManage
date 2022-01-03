@@ -59,3 +59,23 @@ table {
 .checkbox-margin{
     margin: 0 10px;
 }
+
+
+.numberOfDays{
+  text-align: center;
+}
+@media only screen and (max-width: 1200px) {
+  table {
+    width: 100%;
+  }
+  .reason {
+    display: none;
+  }
+  .numberOfDays{
+    display: none;
+  }
+  .leaveType{
+    display:none;
+  }
+
+}

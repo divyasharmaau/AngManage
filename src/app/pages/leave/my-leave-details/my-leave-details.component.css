@@ -1,0 +1,30 @@
+.applyLeaveLabel{
+    font-weight: bold;
+    color:blue;
+  }
+
+  mat-label{
+    font-weight: bold;
+    color:blue;
+    font-size: 1rem;
+  }
+
+  .otherLabel{
+    font-weight: bold;
+    color:blue;
+    font-size: 0.8rem;
+  }
+  .full-width {
+    width: 100%;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  button{
+      background-color: purple;
+  }
+  

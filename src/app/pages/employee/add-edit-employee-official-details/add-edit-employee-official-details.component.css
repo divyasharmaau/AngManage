@@ -1,17 +1,35 @@
 .help-block{
     font-size:small;
-    color:blue;
+    color:#a94442;
 }
 
-.ng-valid[required], .ng-valid.required  {
+.has-block{
+  border: 1px solid #a94442; 
+}
+
+.ng-valid[required], .ng-valid.required {
+  border: 1px solid #42A948; 
+}
+/* .has-feedback{
+  border: 1px solid #a94442; 
+} */
+/* .ng-valid[required], .ng-valid.required  {
     border: 1px solid #42A948; 
   }
   
   .ng-invalid:not(form)  {
     border: 1px solid #a94442; 
   }
-  
+   */
   label{
       font-size: small;
-    
   }
+
+  /* .form-control  {
+    min-height: 38px !important;
+  } */
+
+  .form-control{
+    min-height:38px;
+    padding: 0.375rem 0.75rem;
+}

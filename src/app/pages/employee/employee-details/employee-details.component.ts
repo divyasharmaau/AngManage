@@ -31,7 +31,6 @@ import { EmployeeService } from '../services/employee.service';
   accordion!: MatAccordion;
   constructor(private route : ActivatedRoute, private employeeService: EmployeeService) {
     var id = this.route.snapshot.paramMap.get('id');
-    alert(id);
     this.employeeService.getEmployeeOfficialDetails(id)
     .subscribe(data =>
       {
@@ -39,12 +38,10 @@ import { EmployeeService } from '../services/employee.service';
         if(this.employeeOfficialDetails.employeePersonalDetails != null)
         {
            this.flag = false;
-          alert("checking for personal details");
           //this.showEmployeePersonalDetails();
         }
         else
         {
-          alert("creating personal detail");
           this.flag = true;
         }
       })

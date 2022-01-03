@@ -1,8 +1,8 @@
 export interface AppUserLeaveModel {
     id: number,
     fullName: string,
-    fromDate: Date,
-    tillDate: Date,
+    fromDate: any,
+    tillDate: any,
     //joiningDate: Date,
     leaveType: string,
     leaveId: number,

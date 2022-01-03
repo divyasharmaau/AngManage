@@ -1,0 +1,23 @@
+mat-card{
+    padding: 2rem 5rem 2rem 5rem;
+}
+mat-card-header{
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+mat-label{
+    font-weight: bold;
+    color:blue;
+    font-size: 1rem;
+  }
+
+  .otherLabel{
+
+    color:blue;
+    font-size: 0.8rem;
+   
+}
+
+  .full-width {
+    width: 100%;
+  }

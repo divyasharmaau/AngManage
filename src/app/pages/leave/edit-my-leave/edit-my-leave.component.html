@@ -1,0 +1,137 @@
+
+<div class="container-fluid">
+    <div class="card shadow-lg p-3 mb-5" *ngIf="leaveEdited">
+        <span class="alert text-center">{{successMessage}}</span>
+    </div>
+   
+    <div *ngIf="!leaveEdited">
+        <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+   
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Edit Leave</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row mb-3 mt-3">
+                        <div class="col-md-6">
+                         
+                                <mat-form-field class="full-width" appearance="standard">
+                                    <mat-label>Date On Which Applied</mat-label>
+                                    <input formControlName="currentDate" matInput placeholder="Date Applied" readonly>
+                                </mat-form-field>
+                        
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <!-- <mat-label class="mb-2 applyLeaveLabel">Joining Date</mat-label>:  -->
+                            <!-- <span>{{leaveDetails.joiningDate | date: 'dd MMM yyyy'}}</span> -->
+                            <mat-form-field class="full-width"  appearance="standard">
+                                <mat-label>Joining Date</mat-label> 
+                                <input formControlName="joiningDate"   matInput  placeholder="Joining Date">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!--Date Requested For-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>From Date</mat-label>
+                                <!-- <input type="date" class="form-control" formControlName="dateOfBirth" id="dateOfBirth"> -->
+                                <input matInput formControlName="fromDate" [min]="minDate" [max]="maxDate"
+                                    [matDatepicker]="picker"> 
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Till Date</mat-label>
+                                <input matInput formControlName="tillDate" [min]="minDate" [max]="maxDate"
+                                    [matDatepicker]="pickerTillDate">
+                                <mat-datepicker-toggle matSuffix [for]="pickerTillDate"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerTillDate></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+    
+                    </div>
+                    <!--Leave Type Duration(dropdown box)-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Leave Type</mat-label>
+                                
+                                <select formControlName="leaveType" matNativeControl id="mySelectId">
+                                    <option value="" disabled selected></option>
+                                    <option value="Annual Leave">Annual Leave</option>
+                                    <option value="Sick Leave">Sick Leave</option>
+                                </select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Duration</mat-label>
+                                <select formControlName="duration" matNativeControl id="mySelectId">
+                                    <option value="" disabled selected></option>
+                                    <option value="Full Day ">Full Day</option>
+                                    <option value="First Half Day">First Half Day</option>
+                                    <option value="Second Half Day">Second Half Day</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!--Reason-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Reason</mat-label>
+                                <input formControlName="reason" matInput placeholder="Reason">
+                            </mat-form-field>
+                        </div>
+                    </div>
+     
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <mat-label class="mt-3 otherLabel">Leave Balance</mat-label><br>
+                            <ul>
+                                <li>
+                                   Annual Leave Balance:
+                                   <input formControlName="balanceAnnualLeave" matInput placeholder="balanceAnnualLeave">
+                                    <!-- <span>{{leaveDetails.balanceAnnualLeave | number : '1.2-2'}}</span> <br> -->
+                                </li>
+                                <li>
+                                    Sick Leave Balance :
+                                     <input formControlName="balanceSickLeave" matInput placeholder="balanceSickLeave">
+                                     <!-- :<span>{{leaveDetails.balanceSickLeave | number : '1.2-2' }}</span> -->
+                                </li>
+                            </ul>
+                        </div>
+                     
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-label for="filePath" class="otherLabel">File</mat-label>
+                                <input formControlName="filePath" matInput  placeholder="file"> 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-label for="file" class="otherLabel">Upload another file</mat-label>
+                                <input type="file" class="form-control" formControlName="file"
+                                    (change)="onSelectFile($event)">
+                            </div>
+                        </div>
+                    </div>
+                    <!--Submit-->
+                    <mat-card-actions>
+                        <button mat-stroked-button type="submit">Submit</button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
+    
+        </form>
+    </div>
+
+</div>
+

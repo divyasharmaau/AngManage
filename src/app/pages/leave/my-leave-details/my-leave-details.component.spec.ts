@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
+import { MyLeaveDetailsComponent } from './my-leave-details.component';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('MyLeaveDetailsComponent', () => {
+  let component: MyLeaveDetailsComponent;
+  let fixture: ComponentFixture<MyLeaveDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [ MyLeaveDetailsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(MyLeaveDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

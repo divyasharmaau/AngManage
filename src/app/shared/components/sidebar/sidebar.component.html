@@ -1,10 +1,11 @@
 <mat-nav-list>
     <div class="profile-card">
         <div class="header">
-            <h2>James Collins</h2>
-            <h4>hello</h4>
+            <h2>{{userName}}</h2>
+            <h4>{{roleName}}</h4>
         </div>
-        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt ="user name">
+        <img src= "{{profilePicture}}"/>
+        <!-- <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt ="user name"> -->
     </div>
     <mat-divider></mat-divider>
 
@@ -12,7 +13,7 @@
 <mat-divider></mat-divider>
 <h2 matSubheader><mat-icon>face</mat-icon>Employee</h2>
 <ul>
-    <li><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/employeeList">EmployeeList</a></li>
+    <li *ngIf="authenticationService.getRole()"><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/employeeList">EmployeeList</a></li>
     <li><a mat-list-item routerLinkActive="list-item-active" routerLink="/">My Profile</a></li>
 </ul>
 
@@ -20,7 +21,7 @@
 <h2 matSubheader><mat-icon>library_books</mat-icon>Leave</h2>
 <ul>
     <li><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/applyLeave">Apply Leave</a></li>
-    <li><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/leaveList">LeaveList</a></li>
+    <li  *ngIf="authenticationService.getRole()"><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/leaveList">LeaveList</a></li>
     <li><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/myLeaveList" (click)="onClick()" >My Leave List</a></li>
 </ul>
 <mat-divider></mat-divider>

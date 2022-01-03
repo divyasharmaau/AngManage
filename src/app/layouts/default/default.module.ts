@@ -36,22 +36,10 @@ import { MyLeaveListComponent } from 'src/app/pages/leave/my-leave-list/my-leave
 import { MatConfirmDialogComponent } from 'src/app/pages/leave/mat-confirm-dialog/mat-confirm-dialog.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import { EditMyLeaveComponent } from 'src/app/pages/leave/edit-my-leave/edit-my-leave.component';
+import { MyLeaveDetailsComponent } from 'src/app/pages/leave/my-leave-details/my-leave-details.component';
+import { EditLeaveAdminComponent } from 'src/app/pages/leave/edit-leave-admin/edit-leave-admin.component';
+//import { CustomErrorValidationComponent } from 'src/app/pages/employee/custom-error-validation/custom-error-validation.component';
 
 
 @NgModule({
@@ -68,8 +56,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     LeaveListComponent,
     MyLeaveListComponent,
     MatConfirmDialogComponent,
-
-
+    EditMyLeaveComponent,
+    MyLeaveDetailsComponent,
+    EditLeaveAdminComponent,
+    //CustomErrorValidationComponent,
+  
   ],
   imports: [
     CommonModule,
@@ -91,11 +82,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
-    MatDialogModule
-    
-  
-    
-
-  ]
+    MatDialogModule]
 })
 export class DefaultModule { }

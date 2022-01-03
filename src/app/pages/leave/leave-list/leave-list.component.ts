@@ -13,6 +13,7 @@ import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox
 
 import { AppUserLeaveModel } from '../interfaces/appUserLeaveModel';
 import { LeaveService } from '../services/leave.service';
+import { LIVE_ANNOUNCER_ELEMENT_TOKEN_FACTORY } from '@angular/cdk/a11y';
 @Component({
   selector: 'app-leave-list',
   templateUrl: './leave-list.component.html',
@@ -27,6 +28,8 @@ export class LeaveListComponent implements OnInit {
   pendingChecked: boolean;
   minDate: Date;
   maxDate: Date;
+  tillDate: any;
+  fromDate: any;
   constructor(private leaveService : LeaveService,
     //private dateAdapter: DateAdapter<Date>
 
@@ -48,7 +51,7 @@ export class LeaveListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.showAllLeaves();
+    this.showAllLeaves(null);
 
     // this.employeeLeaves.filterPredicate = ((data: AppUserLeaveModel, filter: string): boolean => {
     //   const filterValues = JSON.parse(filter);
@@ -60,8 +63,8 @@ export class LeaveListComponent implements OnInit {
 
 
 
-  showAllLeaves(){
-    this.leaveService.getAllLeaves()
+  showAllLeaves(fromDate: any ){
+    this.leaveService.getAllLeaves(fromDate)
     .subscribe(data =>{
       this.employeeLeaves = new MatTableDataSource<AppUserLeaveModel>(data);
       this.employeeLeaves.paginator = this.paginator;
@@ -81,47 +84,57 @@ export class LeaveListComponent implements OnInit {
 
   }
 
-  OnDateChange(event:Event){
-    alert("hi");
-    const filterValue = (event.target as HTMLInputElement).value;
-    alert("filter Value" + filterValue);
+  // OnDateChange(event:Event){
+  //   alert("hi");
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   alert("filter Value" + filterValue);
  
-    this.employeeLeaves.filter = filterValue;
-    if(this.employeeLeaves.paginator){
-      this.employeeLeaves.paginator.firstPage();
-    }
-  }
+  //   this.employeeLeaves.filter = filterValue;
+  //   if(this.employeeLeaves.paginator){
+  //     this.employeeLeaves.paginator.firstPage();
+  //   }
+  // }
+
+
+//   onDateChange( $event ) {
+//     const formatted = $event.value.format('YYYY-MM-DD')
+//     $event.target.value = formatted
+//     alert(" $event.target.value" +  $event.target.value);
+// }
   // addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
   //   alert(event.value);
   //   this.events.push(`${type}: ${event.value}`);
   // }
   inputEvent(event){
-    // Return date object 
+    // Return date object
+    //alert("input Event"); 
     console.log(event.value);
   }
   changeEvent(event){
-    // const filterValue =moment(event.value).format('dd/MM/yyyy');
-    const filterValue =event.value;
-    
+
+    let filterValue = moment(event.value).format("YYYY-MM-DD");
+    alert(filterValue);
+    //this.fromDate
+    this.showAllLeaves(filterValue);
+
     this.employeeLeaves.filter = filterValue;
     if(this.employeeLeaves.paginator){
       this.employeeLeaves.paginator.firstPage();
     }
-    alert(event.value);
-    // Return date object
+  
     
   }
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    alert("hello");
-    const filterValue = moment(event.value).format('yyyy/MM/dd');
-    var date = new  Date (filterValue);
-    alert("filterValue"+ filterValue);
-    this.employeeLeaves.filter = filterValue;
-    if (this.employeeLeaves.paginator) {
-      this.employeeLeaves.paginator.firstPage();
-    }
+  // addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+  //   alert("hello");
+  //   const filterValue = moment(event.value).format('yyyy/MM/dd');
+  //   var date = new  Date (filterValue);
+  //   alert("filterValue"+ filterValue);
+  //   this.employeeLeaves.filter = filterValue;
+  //   if (this.employeeLeaves.paginator) {
+  //     this.employeeLeaves.paginator.firstPage();
+  //   }
     
-  }
+  // }
   searchLeaveType(event: Event){
     const filterValue = (event.target as HTMLOptionElement).value;
     alert(filterValue + "serach");

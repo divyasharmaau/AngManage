@@ -2,4 +2,12 @@ ul li {
     list-style: none;
   }
   
-  
+  /* .mat-toolbar{
+    background-color: #1e3d50;
+    color:white;
+  } */
+
+  .mat-toolbar{
+    height:15px;
+    background-color: #fafafa
+  }

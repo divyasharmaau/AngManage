@@ -12,19 +12,31 @@ import { EmployeeListComponent } from './pages/employee/employee-list/employee-l
 import { EmployeeOfficialDetailsComponent } from './pages/employee/employee-official-details/employee-official-details.component';
 import { EmployeePersonalDetailsComponent } from './pages/employee/employee-personal-details/employee-personal-details.component';
 import { ApplyLeaveComponent } from './pages/leave/apply-leave/apply-leave.component';
+import { EditMyLeaveComponent } from './pages/leave/edit-my-leave/edit-my-leave.component';
 import { LeaveListComponent } from './pages/leave/leave-list/leave-list.component';
+import { MyLeaveDetailsComponent } from './pages/leave/my-leave-details/my-leave-details.component';
 import { MyLeaveListComponent } from './pages/leave/my-leave-list/my-leave-list.component';
+import { EditLeaveAdminComponent } from './pages/leave/edit-leave-admin/edit-leave-admin.component';
+import { RoleGuard } from './guards/role.guard';
+import { AuthGuard } from './guards/auth.guard';
+
+
 
 const routes: Routes = [
     {path:'', component: LoginComponent},
-   // {path:'login', component:LoginComponent},
+   
+    {
+      path:'login', component:LoginComponent,
+    },
     {
     path:'home' , component: DefaultComponent,
-    children:[{
+    children:[
+    
+      {
       path:'dashboard', component: DashboardComponent
     }
     ,{ 
-      path: 'employeeList', component:EmployeeListComponent
+      path: 'employeeList', component:EmployeeListComponent, canActivate:[RoleGuard]
     },
     {
       path:'employeeOfficialDetails/:id', component:EmployeeOfficialDetailsComponent
@@ -36,10 +48,10 @@ const routes: Routes = [
       path:'employeeDetails/:id', component:EmployeeDetailsComponent
     },
     {
-      path:'addEmployeeOfficialDetails', component:AddEditEmployeeOfficialDetailsComponent
+      path:'addEmployeeOfficialDetails', component:AddEditEmployeeOfficialDetailsComponent, canActivate:[RoleGuard]
     },
     {
-      path:'editEmployeeOfficialDetails/:id', component:AddEditEmployeeOfficialDetailsComponent
+      path:'editEmployeeOfficialDetails/:id', component:AddEditEmployeeOfficialDetailsComponent, canActivate:[RoleGuard]
     },
     {
       path:'addEmployeePersonalDetails/:id', component:AddEditEmployeePersonalDetailsComponent
@@ -51,12 +63,21 @@ const routes: Routes = [
       path:'applyLeave', component:ApplyLeaveComponent
     },
     {
-      path:'leaveList', component:LeaveListComponent
+      path:'leaveList', component:LeaveListComponent, canActivate:[RoleGuard]
     },
     {
       path:'myLeaveList/:id', component:MyLeaveListComponent
+    },
+    {
+      path:'editMyLeave/:id', component:EditMyLeaveComponent
+    },
+    {
+      path:'myLeaveDetails/:id', component:MyLeaveDetailsComponent
+    },
+    {
+      path:'editLeaveAdmin/:id', component:EditLeaveAdminComponent, canActivate:[RoleGuard]
     }
-  ]
+  ], canActivate:[AuthGuard]
   }];
 
 @NgModule({

@@ -82,10 +82,7 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
  
   
   createForm(){
-alert(this.empOfficialDetails.firstName + " " +this.empOfficialDetails.lastName);
-
     this.form = this.fb.group({
-     
       "fullName": [this.empOfficialDetails.firstName + " " +this.empOfficialDetails.lastName],
       "photo": [''],
     // "photoPath":[''],
@@ -256,16 +253,11 @@ alert(this.empOfficialDetails.firstName + " " +this.empOfficialDetails.lastName)
 
   onSelectStatus(event:any){
     if(this.form.value.status == "Full-Time"){
-
-      // alert("Full Time");
       this.myNameElem.nativeElement.value = 5;
-
-       // this.workDays = 5;
         this.workHours = 7.6;
     }
     else
     {
-      // alert("else");
       this.myNameElem.nativeElement.value = 0;
     }
   }

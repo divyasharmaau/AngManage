@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../authentication.service';
@@ -11,6 +11,8 @@ import { AuthenticationService } from '../authentication.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
@@ -33,19 +35,38 @@ export class LoginComponent implements OnInit {
   this.authenticationService.login(username,password,userRole)
       .pipe(first())
       .subscribe(data =>{
-        alert("app checking");
-        this.router.navigate(['home'])
         this.router.navigate(['home'])
       })
-	 
   }
+
   changeRole(e: any){
-    this.selectRole()?.setValue(e.target.value,{
-      onlySelf: true
-    })
+    this.selectRole().setValue(e.target.value,{
+         //only if this value is true the form will be submitted
+         onlySelf: true})
   }
 
   selectRole(){
     return this.form.get('userRole');
+  }
+  onSubmitDemoAdmin(){
+    var username = "demoasadmn@gmail.com";
+    var password = "Password1!";
+    var userRole = "Administartor";
+  this.authenticationService.login(username,password,userRole)
+      .pipe(first())
+      .subscribe(data =>{
+        this.router.navigate(['home'])
+      })
+  }
+
+  onSubmitDemoUser(){
+    var username = "useratdemo@gmail.com";
+    var password = "Password1!";
+    var userRole = "User";
+  this.authenticationService.login(username,password,userRole)
+      .pipe(first())
+      .subscribe(data =>{
+        this.router.navigate(['home'])
+      })
   }
 }

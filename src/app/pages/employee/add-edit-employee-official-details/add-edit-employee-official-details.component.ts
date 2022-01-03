@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { BaseErrorFormComponent } from '../baseErrorFormComponent';
+
 import { Employee } from '../interfaces/employee';
+import { EmployeePersonalDetails } from '../interfaces/employeePersonalDetails';
 import { EmployeeService } from '../services/employee.service';
 
 
@@ -17,7 +19,7 @@ import { EmployeeService } from '../services/employee.service';
   export class AddEditEmployeeOfficialDetailsComponent  extends BaseErrorFormComponent  implements OnInit {
 
     form: FormGroup;
-    employee : Employee;
+    employee : Employee = <Employee>{};
     workDays : number;
     workHours: number;
     employeeCreated: boolean = false;
@@ -28,84 +30,135 @@ import { EmployeeService } from '../services/employee.service';
     successMessage : string;
     @ViewChild("daysWorkedInWeek") daysWorkedInWeek: ElementRef;
     @ViewChild("numberOfHoursWorkedPerDay") numberOfHoursWorkedPerDay : ElementRef
+    numRegex = /^-?\d*[.,]?\d{0,2}$/;
+    
+    employeePersonalDetails = <EmployeePersonalDetails>{};
+    profilePhoto :string= "";
+
    //dept: Department[];
   
   
     constructor(private fb: FormBuilder, private http: HttpClient
                ,private employeeService : EmployeeService
-               ,private route : ActivatedRoute) { 
+               ,private route : ActivatedRoute
+               ) { 
   
                 super();
+
+                // validator : this.customErrorVaidation.passwordMatchValidator(
+                //   "password",
+                //   "confirmPassword");
                 this.createForm();
                 //get the value of the id
                 var id = this.route.snapshot.paramMap.get('id');
-  
+         
                 if(id){
                   this.editMode = true;
                   this.hidden = true;
                   this.formTitle = "Edit Employee Official Details";
                   this.successMessage ="Employee has been Updated";
-  
+         
                   //to pre fill the form with values from database for edit 
                   this.employeeService.getEmployeeOfficialDetails(id)
                   .subscribe(data => {
                     this.employee = data;
+                    this.profilePhoto = this.photoPath(this.employee);
                     this.getFormContent();
                   });
                 }else{
+           
                   this.editMode = false;
                   this.hidden = false;
                   this.formTitle = "Create Employee Official Details";
                   this.successMessage = "Employee has been Created";
                 }
                }
-  
+
+       
+
     ngOnInit(): void {
     }
-  
-    // createForm(){
-    //   this.form = this.fb.group({
-    //     "title": ['',Validators.required],
-    //     "firstName": ['', [Validators.required,Validators.pattern('[a-zA-Z]+$')]],
-    //     "middleName": [''],
-    //     "lastName": ['',Validators.required],
-    //     "userName": ['',Validators.required],
-    //     "jobTitle": ['',Validators.required],
-    //     "status": ['',Validators.required],
-    //     "joiningDate": ['',Validators.required],
-    //     "daysWorkedInWeek": ['',Validators.required],
-    //     "numberOfHoursWorkedPerDay": ['',Validators.required],
-    //     "manager": ['',Validators.required],
-    //     // "email": ['',[Validators.required,Validators.pattern("[^ @]*@[^ @]*") ]],
-    //     "email": ['',[Validators.required,Validators.pattern('^.+@gmail.com$')]],
-    //     "departmentId": ['',Validators.required],
-    //     "password": ['',[Validators.required,Validators.minLength(8)]]
-  
-    //   });
+
+    photoPath(employee: Employee): string {
+
+      if(!employee.employeePersonalDetails)
+      {
+        return "/assets/img/avatar.png";
+      }
+
+      if(!employee.employeePersonalDetails.photoPath)
+      {
+        return "/assets/img/avatar.png";
+      }
+
+      return employee.employeePersonalDetails.photoPath;
+    }  
+
+
+    //Match the padssword and Confirm password
+    onPasswordChange(){
+      if (this.confirmPassword.value == this.password.value) {
+        this.confirmPassword.setErrors(null);
+      } else {
+        this.confirmPassword.setErrors({ mismatch: true });
+      }
+    }
+    
+    // getting the form control elements
+    get password(): AbstractControl {
+      return this.form.controls['password'];
+    }
+    
+    get confirmPassword(): AbstractControl {
+      return this.form.controls['confirmPassword'];
+    }
+
 
     createForm(){
       this.form = this.fb.group({
-        "title": [''],
-        "firstName": [''],
+        "title": ['',Validators.required],
+        "firstName": ['',[Validators.required,Validators.pattern('[a-zA-Z]+$')]],
         "middleName": [''],
-        "lastName": [''],
-        "userName": [''],
-        "jobTitle": [''],
-        "status": [''],
-        "joiningDate": [''],
-        "daysWorkedInWeek": [''],
-        "numberOfHoursWorkedPerDay": [''],
-        "manager": [''],
+        "lastName": ['',[Validators.required,Validators.pattern('[a-zA-Z]+$')]],
+        "userName": ['',Validators.required],
+        "jobTitle": ['',Validators.required],
+        "status": ['',Validators.required],
+        "joiningDate": ['',Validators.required],
+        "daysWorkedInWeek": ['',[Validators.required, Validators.pattern(this.numRegex)]],
+        "numberOfHoursWorkedPerDay": ['',[Validators.required, Validators.pattern(this.numRegex)]],
+        "manager": ['',Validators.required],
         // "email": ['',[Validators.required,Validators.pattern("[^ @]*@[^ @]*") ]],
         "email": ['',[Validators.required,Validators.pattern('^.+@gmail.com$')]],
-        "departmentId": [''],
-        "password": ['']
-  
+        "departmentId": ['',Validators.required],
+        "password": ['',[Validators.required,Validators.minLength(8),Validators.pattern('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}') ]],
+        "confirmPassword":['']
       });
+
+
+   
+      
+    // createForm(){
+    //   this.form = this.fb.group({
+    //     "title": [''],
+    //     "firstName": [''],
+    //     "middleName": [''],
+    //     "lastName": [''],
+    //     "userName": [''],
+    //     "jobTitle": [''],
+    //     "status": [''],
+    //     "joiningDate": [''],
+    //     "daysWorkedInWeek": [''],
+    //     "numberOfHoursWorkedPerDay": [''],
+    //     "manager": [''],
+    //     // "email": ['',[Validators.required,Validators.pattern("[^ @]*@[^ @]*") ]],
+    //     "email": ['',[Validators.required,Validators.pattern('^.+@gmail.com$')]],
+    //     "departmentId": [''],
+    //     "password": [''],
+    //     "confirmPassword":['']
+    //   });
     }
   
     onSubmit(){
-  
       if(this.editMode){
         this.employee = <Employee>{
           id: this.employee.id,
@@ -118,7 +171,7 @@ import { EmployeeService } from '../services/employee.service';
           joiningDate: this.form.value.joiningDate,
           jobTitle: this.form.value.jobTitle,
           status: this.form.value.status,
-          daysWorkedInWeek: this.form.value.daysWorkedInWeek,
+          daysWorkedInWeek: this.daysWorkedInWeek.nativeElement.value,
           numberOfHoursWorkedPerDay: this.form.value.numberOfHoursWorkedPerDay,
           departmentId: this.form.value.departmentId,
           manager: this.form.value.manager
@@ -144,7 +197,7 @@ import { EmployeeService } from '../services/employee.service';
           jobTitle: this.form.value.jobTitle,
           status: this.form.value.status,
           daysWorkedInWeek: this.daysWorkedInWeek.nativeElement.value,
-          numberOfHoursWorkedPerDay: this.form.value.numberOfHoursWorkedPerDay,
+          numberOfHoursWorkedPerDay: this.numberOfHoursWorkedPerDay.nativeElement.value,
           departmentId: this.form.value.departmentId,
           manager: this.form.value.manager,
           password: this.form.value.password,
@@ -164,7 +217,7 @@ import { EmployeeService } from '../services/employee.service';
       this.form.setValue({
       title : this.employee.title || '',
       firstName : this.employee.firstName || '',
-      middleName: this.employee.middleName || '',
+      middleName: this.employee.middleName || '     ',
       lastName: this.employee.lastName || '',
       userName:  this.employee.userName || '',
       email:  this.employee.email || '',
@@ -175,7 +228,8 @@ import { EmployeeService } from '../services/employee.service';
       numberOfHoursWorkedPerDay:  this.employee.numberOfHoursWorkedPerDay || '',
       manager:  this.employee.manager || '',
       departmentId:  this.employee.departmentId || '',
-      password: this.employee.password || ''
+      password: this.employee.password || '',
+      confirmPassword : this.employee.confirmPassword || ''
     
     })
     }
@@ -184,8 +238,6 @@ import { EmployeeService } from '../services/employee.service';
       if(this.form.value.status == "Full-Time"){
         this.daysWorkedInWeek.nativeElement.value = 5;
         this.numberOfHoursWorkedPerDay.nativeElement.value = 7.6;
-         // this.workDays = 5;
-          //this.workHours = 7.6;
       }
       else
       {

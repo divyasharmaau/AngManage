@@ -1,0 +1,110 @@
+<div class="container">
+  
+    <form class="form-container" [formGroup]="form">
+        
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Leave Details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="p-3">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Date On Which Applied</mat-label>
+                                <input formControlName="currentDate" matInput placeholder="Date Applied" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>From Date</mat-label>
+                                <input formControlName="fromDate" matInput placeholder="From date" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Till Date</mat-label>
+                                <input formControlName="tillDate" matInput placeholder="Till Date" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!--Leave Type and Leave Duration-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Leave Type</mat-label>
+                                <input formControlName="leaveType" matInput placeholder="Leave Type" readonly>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Duration</mat-label>
+                                <input formControlName="duration" matInput placeholder="Duration" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!--Reason-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Reason</mat-label>
+                                <input formControlName="reason" matInput placeholder="Reason" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                     <!--Leave Status-->
+                     <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Leave Status</mat-label>
+                                <input formControlName="leaveStatus" matInput placeholder="Leave Status" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                      <!--Comment-->
+                      <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field class="full-width" appearance="standard">
+                                <mat-label>Comment</mat-label>
+                                <input formControlName="comment" matInput placeholder="Comment" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <mat-label class="otherLabel" >Leave Balance</mat-label><br>
+                            <ul>
+                                <li>
+                                   Annual Leave Balance: <span>{{leave.balanceAnnualLeave | number : '1.2-2'}}</span> <br>
+                                </li>
+                                <li>
+                                    Sick Leave Balance :<span>{{leave.balanceSickLeave | number : '1.2-2' }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-label class="otherLabel" for="filePath">File</mat-label>
+                                <!-- <input formControlName="filePath" matInput placeholder="File"  readonly> -->
+                           
+                                <p>{{leave.filePath}}</p>
+                            </div>
+                        </div>
+                    </div>
+           
+                    <!--Submit-->
+                    <mat-card-actions>
+                        <!-- <a [routerLink]="['/home/editMyLeave/' , leave.id]" class="btn btn-outline-success m-5 ">Edit</a> -->
+                        <button  mat-raised-button [routerLink]="['/home/editMyLeave/' , leave.id]" type="submit">Edit</button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
+        </form>
+</div>
+

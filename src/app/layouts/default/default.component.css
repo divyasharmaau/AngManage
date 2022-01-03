@@ -5,14 +5,20 @@
 }
 
 mat-drawer {
-    width: 350px;
+    width: 250px;
+    
   }
   
   mat-drawer-container {
     height: 100%;
+
   }
   
   mat-drawer-content {
     padding: 20px;
+    /* background-color: #1e3d50; */
   }
   
+  @media screen and (max-width: 1220px)  {
+    mat-drawer-content { width: 100%; }
+  } 

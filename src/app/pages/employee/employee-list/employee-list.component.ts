@@ -6,10 +6,6 @@ import { Employee } from '../interfaces/employee';
 import { EmployeeSharedService } from '../services/employee-shared-service.service';
 import { EmployeeService } from '../services/employee.service';
 
-////import { Employee } from 'src/app/interfaces/employee';
-
-//import { EmployeeSharedService } from '../services/employee-shared.service';
-//import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -26,29 +22,21 @@ export class EmployeeListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort | undefined;
 
 
-  // constructor(private employeeService: EmployeeService,
-  //   private employeeSharedService: EmployeeSharedService) { 
-  //     this.employeeSharedService.myMethod$.subscribe((data) => {
-  //       this.employeeList = data; // And he have data here too!
-  //   }
 
   constructor(private employeeService: EmployeeService,
-    private employeeSharedService: EmployeeSharedService
+    // private employeeSharedService: EmployeeSharedService
     ) { 
-     this.employeeSharedService.searchEmployee$
-     .subscribe(x =>{
-       this.employeeList = x;
+    //  this.employeeSharedService.searchEmployee$
+    //  .subscribe(x =>{
+    //    this.employeeList = x;
 
-     });
+    //  });
    
 }
 
   ngOnInit(): void {
-    alert("initial start");
     if(this.employeeList == null){
-      alert("hello");
-      this.getEmployeeList();
-     
+    this.getEmployeeList();
     }
     //this.getEmployeeList();
   }

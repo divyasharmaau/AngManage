@@ -13,6 +13,21 @@
                 <div class="card-body">
 
                     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="form-group col-md-6" >
+                                photo
+                                <img src={{profilePhoto}} width="150px" />
+                                <!-- <img src={{employee.employeePersonalDetails.photoPath}} width="150px" /> -->
+                                                            
+                 
+                            <!-- <div >
+                                <img src ={{profilePhoto}} style="width:170px;  ; border-radius: 50%;"/>
+                            </div> -->
+                        </div>
+                        <!-- <div class="row mt-4"> -->
+                            <!-- <img src= {{employeeDetails.employeePersonalDetails.photoPath}} style="width:170px;  ; border-radius: 50%;" /> -->
+
+                            <!-- <img src={{employee.employeePersonalDetails.photoPath}} style="width:170px;  ; border-radius: 50%;"> -->
+                        <!-- </div> -->
                         <!--Title-->
                         <div class="row mt-4">
                             <div class="form-group col-md-4">
@@ -25,15 +40,15 @@
                                 </select>
                             </div>
                         </div>
-                        <!--Name Details-->
+                        <!--Name Details--> 
                         <div class="row mt-4">
-                            <div class="form-group col-sm-12 col-lg-4">
-                                <label for="firstName">First Name</label>
+                            <div class="form-group col-sm-12 col-lg-4" >
+                                <label for="firstName" >First Name</label>
                                 <input type="text" formControlName="firstName" class="form-control" required
-                                    placeholder="First Name" id="firstName">
+                                    placeholder="First Name" id="firstName" [ngClass]= "{'has-block':hasError('firstName')}">
 
-                                <div *ngIf="hasError('firstName')" class="help-block">
-                                    First Name is a required field: please insert a valid text.
+                                <div *ngIf="hasError('firstName')" class="help-block" >
+                                    First Name is a required field.
                                 </div>
                             </div>
                             <div class="col-sm-12 col-lg-4">
@@ -44,14 +59,12 @@
                                     Middle Name is a required field: please insert a valid text.
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-lg-4">
+                            <div class="form-group col-sm-12 col-lg-4">
                                 <label for="lastName">Last Name</label>
-                                <input type="text" class="form-control" placeholder="Last Name"
-                                    formControlName="lastName" id="lastName">
-                                <span *ngIf="hasError('lastName')"
-                                    class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                <input type="text" class="form-control" placeholder="Last Name" required
+                                    formControlName="lastName" id="lastName" [ngClass]="{'has-block':hasError('lastName')}">
                                 <div *ngIf="hasError('lastName')" class="help-block">
-                                    Last Name is a required field: please insert a valid text.
+                                    Last Name is a required field.
                                 </div>
                             </div>
                         </div>
@@ -62,16 +75,19 @@
                                 <input type="text" class="form-control" placeholder="User Name"
                                     formControlName="userName" id="userName">
                                 <div *ngIf="hasError('userName')" class="help-block">
-                                    UserName is a required field: please insert a valid text.
+                                    UserName is a required field.
                                 </div>
                             </div>
-                            <div class="form-group col-sm-12 col-lg-6">
-                                <label for="email">Email</label>
+                     
+                            <div class="form-group col-sm-12 col-lg-6" >
+                                <label for="email" >Email</label>
                                 <input type="text" class="form-control" placeholder="Email" formControlName="email"
-                                    id="email">
+                                required
+                                    id="email" [ngClass]="{'has-block':hasError('email')}">
                                 <div *ngIf="hasError('email')" class="help-block">
-                                    Email is a required field: please insert a valid text.
+                                    Email is a required field. 
                                 </div>
+                                
                             </div>
                         </div>
                         <!--Password and Confirm Password-->
@@ -79,15 +95,21 @@
                             <div class="form-group col-sm-12 col-lg-6" [hidden]="hidden">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" placeholder="Password"
-                                    formControlName="password" id="password">
+                                    formControlName="password" id="password"  (change)="onPasswordChange()" >
                                 <div *ngIf="hasError('password')" class="help-block">
-                                    Password is a required field: please insert a valid text.
+                                    Password is a required field.
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 col-lg-6" *ngIf="!editMode">
                                 <label for="confirmPassword">Confirm Password</label>
                                 <input type="password" class="form-control" placeholder="Confirm Password"
-                                    formControlName="confirmPassword" id="confirmPassword">
+                                    formControlName="confirmPassword" id="confirmPassword" 
+                                    (change)="onPasswordChange()">
+                            
+                                    <span *ngIf="confirmPassword.hasError('mismatch')" class="help-block" >Password and Confirm password do not match do not match.</span>
+                                    <!-- <div *ngIf="hasError('confirmPassword')" class="help-block">
+                                        Confirm password is a required field: please insert a valid text.
+                                    </div> -->
                             </div>
                         </div>
                         <!--Joining Date and Job Title-->
@@ -97,7 +119,7 @@
                                 <input type="date" class="form-control" placeholder="Joining Date"
                                     formControlName="joiningDate" id="joiningDate">
                                 <div *ngIf="hasError('joiningDate')" class="help-block">
-                                    Joining Date is a required field: please insert a valid text.
+                                    Joining Date is a required field.
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 col-lg-6">
@@ -105,7 +127,7 @@
                                 <input type="text" class="form-control" placeholder="Job Title"
                                     formControlName="jobTitle" id="jobTitle">
                                 <div *ngIf="hasError('jobTitle')" class="help-block">
-                                    Job Title is a required field: please insert a valid text.
+                                    Job Title is a required field.
                                 </div>
                             </div>
                         </div>
@@ -122,7 +144,7 @@
                                     <option value="Casual">Casual</option>
                                 </select>
                                 <div *ngIf="hasError('status')" class="help-block">
-                                    Status is a required field: please insert a valid text.
+                                    Status is a required field.
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 col-lg-4">
@@ -131,7 +153,7 @@
                                     #daysWorkedInWeek [readonly]="isReadOnly()" formControlName="daysWorkedInWeek"
                                     id="daysWorkedInWeek" name="daysWorkedInWeek">
                                 <div *ngIf="hasError('daysWorkedInWeek')" class="help-block">
-                                    Days Worked In Week is a required field: please insert a valid text.
+                                    Days Worked In Week is a required field.
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 col-lg-4">
@@ -140,7 +162,7 @@
                                     #numberOfHoursWorkedPerDay [readonly]="isReadOnly()"
                                     formControlName="numberOfHoursWorkedPerDay" id="numberOfHoursWorkedPerDay">
                                 <div *ngIf="hasError('numberOfHoursWorkedPerDay')" class="help-block">
-                                    Number Of Hours Worked Per Day is a required field: please insert a valid text.
+                                    Number Of Hours Worked Per Day is a required field.
                                 </div>
                             </div>
                             <!-- <div class="form-group col-md-4">
@@ -166,7 +188,7 @@
                                     <!-- <option *ngFor="let dept of depts" [value]="dept.name">{{dept.name}}</option> -->
                                 </select>
                                 <div *ngIf="hasError('department')" class="help-block">
-                                    Department is a required field: please insert a valid text.
+                                    Department is a required field.
                                 </div>
                             </div>
                             <div class="form-group col-sm-12 col-lg-6"
@@ -177,7 +199,7 @@
                                 <span *ngIf="hasError('manager')"
                                     class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
                                 <div *ngIf="hasError('manager')" class="help-block">
-                                    Manager is a required field: please insert a valid text.
+                                    Manager is a required field.
                                 </div>
                             </div>
                         </div>

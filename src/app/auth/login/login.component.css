@@ -1,6 +1,25 @@
+@media only screen and (max-width: 600px) 
+{
+	mat-card {
+		width:100%;
+	}
+	
+} 
+.flex-me {
+  display: inline-flex;
+  flex-flow: row wrap;
+  background: grey;
+}
+
+mat-card {
+  width: 400px;
+}
 mat-toolbar{
     color: purple;
     background-color: blanchedalmond;
+}
+.loginDiv {
+    width:100%;
 }
 .loginDiv mat-card{
     padding: 0px;
@@ -12,3 +31,8 @@ mat-toolbar{
 .signInButton:hover{
     color:purple;
 }
+
+/* .dropdownMenu{
+    background-color: brown;
+    width:150px;
+} */
