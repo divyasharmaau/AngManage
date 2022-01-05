@@ -6,6 +6,7 @@
 :root {
     --peruOrange: #c69734;
     --green:green;
+    --red: #c13a4c;
     --darkSlateGreen:#3e6c5b; 
     --lightSlateGreen:#71b199;
     --errorRed:#a94442;
@@ -15,7 +16,7 @@
   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-background-color: var(--darkSlateGreen);
+background-color: var(--lightSlateGreen);
 }
 mat-label{
     color: var(--peruOrange);
@@ -68,8 +69,19 @@ mat-label{
 }
 .edit-button:hover{
     color:#ffff;
-    background-color:var(--lightSlateGreen);
     background-color:var(--darkSlateGreen);
+}
+
+.decline-button{
+  border: 1px solid var(--errorRed) ;
+  color: #ffff;
+  background-color:var(--errorRed);
+}
+
+.decline-button:hover{
+  border: 1px solid var(--errorRed) ;
+  color: #ffff;
+  background-color:var(--red);
 }
 /* ERROR BLOCK */
 

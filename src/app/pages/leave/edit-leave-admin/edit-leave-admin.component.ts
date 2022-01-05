@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { BaseErrorFormComponent } from '../../employee/baseErrorFormComponent';
 import { EmployeeLeave } from '../interfaces/employeeLeave';
 import { Leave } from '../interfaces/leave';
 
@@ -14,7 +15,7 @@ import { LeaveService } from '../services/leave.service';
   styleUrls: ['./edit-leave-admin.component.css']
 })
 
-export class EditLeaveAdminComponent implements OnInit {
+export class EditLeaveAdminComponent  extends BaseErrorFormComponent implements OnInit {
 
   employeeLeave: EmployeeLeave;
   leaveDetails: Leave;
@@ -25,9 +26,11 @@ export class EditLeaveAdminComponent implements OnInit {
   declineButton: Boolean = false;
   successMessage: string ="The Leave has been Edited";
   leaveEdited: boolean = false;
+  fileName:string="";
 
   constructor(private leaveService: LeaveService, private activatedRoute: ActivatedRoute, private http: HttpClient,
     private fb: FormBuilder) {
+      super();
     this.form = this.fb.group({
       "currentDate": [''],
       "joiningDate": [''],
@@ -39,7 +42,7 @@ export class EditLeaveAdminComponent implements OnInit {
       "balanceAnnualLeave": [''],
       "balanceSickLeave": [''],
       "filePath": [''],
-      "comment": [''],
+      "comment": ['', Validators.required],
       "leaveStatus": [''],
       "approved": [''],
       "declined": ['']
@@ -67,11 +70,7 @@ export class EditLeaveAdminComponent implements OnInit {
           this.approveButton = true;
         }
 
-        //this.getFileName(this.leave.filePath);
-        // alert(this.leave.filePath.substr(this.leave.filePath.lastIndexOf("/")+1));
-        // now data is here and can be used to set initial form values, example:
-        // this.form.get('duration').setValue(this.leaveDetails.duration);
-        // this.form.get('id').setValue(this.leaveDetails.id);
+   
         this.form.get('comment').setValue(this.leaveDetails.comment);
         this.form.get('leaveStatus').setValue(this.leaveDetails.leaveStatus);
         this.form.get('currentDate').setValue(moment(this.leaveDetails.currentDate).format('DD-MM-YYYY'));
@@ -81,26 +80,20 @@ export class EditLeaveAdminComponent implements OnInit {
         this.form.get('leaveType').setValue(this.leaveDetails.leaveType);
         this.form.get('duration').setValue(this.leaveDetails.duration);
         this.form.get('reason').setValue(this.leaveDetails.reason);
-        this.form.get('filePath').setValue(this.leaveDetails.filePath.substr(this.leaveDetails.filePath.lastIndexOf("/") + 1));
+        this.form.get('filePath').setValue(this.getFileName(this.leaveDetails.filePath));
         this.form.get('balanceAnnualLeave').setValue(this.leaveDetails.balanceAnnualLeave);
         this.form.get('balanceSickLeave').setValue(this.leaveDetails.balanceSickLeave);
         this.form.get('approved').setValue('');
         this.form.get('declined').setValue('');
 
-
-        //this.form.get('filePath').setValue(this.leave.filePath);
-        //location.pathname.substr(location.pathname.lastIndexOf("/")+1);
       }
       );
-
-    // const body = {'leaveId' : id}
-
-    // this.http.put<EmployeeLeave>('https://localhost:44330/api/leave/LeaveStatusByAdmin', body)
-    // .subscribe(data =>{
-    //   console.log(data);
-    // })
   }
 
+getFileName(fileName:string){
+  let name = this.leaveDetails.filePath.split('_');
+  return this.fileName = name[1];
+}
   onSubmit() {
 
     var lId = document.activeElement.id;

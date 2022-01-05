@@ -1,7 +1,8 @@
 
 <div class="container-fluid">
     <div class="card shadow-lg p-3 mb-5" *ngIf="leaveEdited">
-        <span class="alert text-center">{{successMessage}}</span>
+        <span class="text-center">{{successMessage}}</span>
+        <p class="text-center home-link mt-2" [routerLink] = "['/home/myLeaveList' , employeeId]" >Back to My Leave List</p>
     </div>
    
     <div *ngIf="!leaveEdited">
@@ -26,35 +27,44 @@
                             <!-- <span>{{leaveDetails.joiningDate | date: 'dd MMM yyyy'}}</span> -->
                             <mat-form-field class="full-width"  appearance="standard">
                                 <mat-label>Joining Date</mat-label> 
-                                <input formControlName="joiningDate"   matInput  placeholder="Joining Date">
+                                <input formControlName="joiningDate" readonly  matInput  placeholder="Joining Date">
                             </mat-form-field>
                         </div>
                     </div>
-                    <!--Date Requested For-->
-                    <div class="row">
+                      <!--Date Requested For-->
+                      <div class="row">
                         <div class="col-md-6">
                             <mat-form-field class="full-width" appearance="standard">
                                 <mat-label>From Date</mat-label>
                                 <!-- <input type="date" class="form-control" formControlName="dateOfBirth" id="dateOfBirth"> -->
-                                <input matInput formControlName="fromDate" [min]="minDate" [max]="maxDate"
-                                    [matDatepicker]="picker"> 
+                                <input matInput formControlName="fromDate" required (dateChange)="onTillDate()"
+                                    [matDatepicker]="picker" placeholder="mm/dd/yyyy" > 
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="hasError('fromDate')" class="error-block">
+                                   From Date is a required field
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="col-md-6">
                             <mat-form-field class="full-width" appearance="standard">
                                 <mat-label>Till Date</mat-label>
-                                <input matInput formControlName="tillDate" [min]="minDate" [max]="maxDate"
-                                    [matDatepicker]="pickerTillDate">
-                                <mat-datepicker-toggle matSuffix [for]="pickerTillDate"></mat-datepicker-toggle>
+                                <input matInput formControlName="tillDate" required 
+                                    [matDatepicker]="pickerTillDate" placeholder="mm/dd/yyyy" (dateChange)="onTillDate()"/>
+                                <mat-datepicker-toggle matSuffix [for]="pickerTillDate" ></mat-datepicker-toggle>
                                 <mat-datepicker #pickerTillDate></mat-datepicker>
+                               <mat-error *ngIf="hasError('tillDate')" class="error-block">
+                                    Till date is a required field
+                                </mat-error>    
+                              <mat-error *ngIf="tillDate.hasError('mismatch')" class="error-block"> 
+                                  Till Date should be equal to greater than From Date
+                            </mat-error>
                             </mat-form-field>
                         </div>
-    
                     </div>
+                  
                     <!--Leave Type Duration(dropdown box)-->
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-md-6">
                             <mat-form-field class="full-width" appearance="standard">
                                 <mat-label>Leave Type</mat-label>
@@ -124,7 +134,7 @@
                     </div>
                     <!--Submit-->
                     <mat-card-actions>
-                        <button mat-stroked-button type="submit">Submit</button>
+                        <button class="edit-button mt-3" mat-stroked-button type="submit">Submit</button>
                     </mat-card-actions>
                 </mat-card-content>
             </mat-card>

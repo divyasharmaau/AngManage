@@ -44,10 +44,12 @@ export class MyLeaveDetailsComponent implements OnInit {
       {
    
           this.leave = data;
- 
-          //this.getFileName(this.leave.filePath);
+         // alert(this.leave.filePath);
+         // alert(this.getFileName(this.leave.filePath) + "this.getFileName(this.leave.filePath)") ;
+         // alert("this.getFileName(this.fileName)" + this.getFileName(this.fileName))
          // alert(this.leave.filePath.substr(this.leave.filePath.lastIndexOf("/")+1));
           // now data is here and can be used to set initial form values, example:
+ 
           this.form.get('currentDate').setValue (moment(this.leave.currentDate).format('DD-MM-YYYY'));
           this.form.get('fromDate').setValue(moment(this.leave.fromDate).format('DD-MM-YYYY'));
           this.form.get('tillDate').setValue(moment(this.leave.tillDate).format('DD-MM-YYYY'));
@@ -57,10 +59,11 @@ export class MyLeaveDetailsComponent implements OnInit {
           this.form.get('duration').setValue(this.leave.duration);
           this.form.get('comment').setValue(this.leave.comment);
           this.form.get('reason').setValue(this.leave.reason);
+          this.form.get('filePath').setValue(this.getFileName(this.leave.filePath));
           this.form.get('balanceAnnualLeave').setValue(this.leave.balanceAnnualLeave);
           this.form.get('balanceSickLeave').setValue(this.leave.balanceSickLeave);
-          this.form.get('filePath').setValue( this.leave.filePath.substr(this.leave.filePath.lastIndexOf("/")+1));
-        
+          //this.form.get('filePath').setValue( this.leave.filePath.substr(this.leave.filePath.lastIndexOf("/")+1));
+
         
            //this.form.get('filePath').setValue(this.leave.filePath);
           //location.pathname.substr(location.pathname.lastIndexOf("/")+1);
@@ -69,9 +72,10 @@ export class MyLeaveDetailsComponent implements OnInit {
 
   }
 
+
  getFileName(fileName:string){
   let x =  this.leave.filePath.split('/');
-   this.fileName = x[5];
+  return this.fileName = x[5];
  }
 
   showMyLeaveDetails(id: number){

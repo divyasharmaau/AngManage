@@ -21,7 +21,6 @@ export class SidebarComponent implements OnInit {
     this.profilePicture = authenticationService.getProfilePictute();
     this.isRoleAdmin = authenticationService.getRole();
     this.userName = authenticationService.getUser();
-    alert(this.userName + "Auth User Name");
     
     if(this.isRoleAdmin)
     {
@@ -34,7 +33,7 @@ export class SidebarComponent implements OnInit {
 
     if(this.profilePicture == "")
     {
-      this.profilePicture = "https://material.angular.io/assets/img/examples/shiba2.jpg";
+      this.profilePicture = "/assets/img/avatar.png";
     }
   }
 

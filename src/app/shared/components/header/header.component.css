@@ -11,4 +11,10 @@ ul li {
     background-color:#eaeaea;
   }
 
- 
+  .brandName{
+    color: var(--peruOrange);
+    font-weight: 500;
+  }
+ button{
+  color: var(--peruOrange);
+ }

@@ -12,6 +12,7 @@
       height: 100px;
       object-fit: cover;
       border-radius: 50%;
+      border: 1px solid var(--peruOrange);
     }
   ul li a{
       /* color:#eaeaea; */
@@ -22,3 +23,4 @@ ul li a:hover{
   background-color: var(--darkSlateGreen);
   color:var(--listWhite);
 }
+

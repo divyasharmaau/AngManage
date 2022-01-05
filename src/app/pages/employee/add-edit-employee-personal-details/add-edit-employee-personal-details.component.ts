@@ -21,12 +21,10 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
 
   form: FormGroup;
   employee: Employee;
-  workDays: number;
-  workHours: number;
+
   employeeCreated: boolean = false;
   editMode: boolean = false;
-  editPassword: boolean = false;
-  hidden: boolean = true;
+
   formTitle: string;
   successMessage: string;
   employeeId: string;
@@ -37,8 +35,6 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
   defaultPhoto: string = "";
   selectedPhoto:any;
   employeeCreatedOrUpdated: boolean = false;
-
-  // employeePersonalDetails: EmployeePersonalDetails;
   employeePersonalDetails = <EmployeePersonalDetails>{};
 
 
@@ -58,7 +54,6 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
 
         if (this.empOfficialDetails.employeePersonalDetails == null) {
           this.createForm();
-          //this is working for create
           this.defaultPhoto = this.defaultProfilePhoto(this.empOfficialDetails);
           alert(this.defaultPhoto);
           this.formTitle = "Add Employee Personal Details";
@@ -69,7 +64,6 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
           this.editMode = true;
           this.createForm();
           this.getFormContent();
-          // this.empOfficialDetails.employeePersonalDetails.photo = this.defaultProfilePhoto(this.empOfficialDetails);
           this.formTitle = "Edit Personal Details";
           this.successMessage = "Employee Personal Details have been updated";
         }
@@ -102,17 +96,15 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
     this.form = this.fb.group({
       "fullName": [this.empOfficialDetails.firstName + " " + this.empOfficialDetails.lastName],
       "photo": [''],
-      // "photoPath":[''],
       "dateOfBirth": ['', Validators.required],
       "nationality": [''],
-      // "bloodGroup": [''],
       "maritalStatus": [''],
       "gender": [''],
       "bankName": [''],
       "branch": [''],
       "accountName": [''],
-      "bsb": [''],
-      "accountNumber": [''],
+      "bsb": ['', Validators.required],
+      "accountNumber": ['', Validators.required],
 
       "houseNumber": [''],
       "street": [''],
@@ -130,7 +122,6 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
       "emergencyContactState": [''],
       "emergencyContactCountry": [''],
       "emergencyContactZipCode": [''],
-      //"photoPath":['']
     });
   }
 
@@ -138,12 +129,9 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
 
 
     this.form.setValue({
-      //id : this.empOfficialDetails.employeePersonalDetails.id,
       fullName: this.empOfficialDetails.firstName + " " + this.empOfficialDetails.lastName || '',
       photo: this.empOfficialDetails.employeePersonalDetails.photo || '',
-      //photoPath : this.empOfficialDetails.employeePersonalDetails.photoPath || '',
       nationality: this.empOfficialDetails.employeePersonalDetails.nationality || '',
-      //  bloodGroup: this.empOfficialDetails.employeePersonalDetails.bloodGroup || '',
       maritalStatus: this.empOfficialDetails.employeePersonalDetails.maritalStatus || '',
       gender: this.empOfficialDetails.employeePersonalDetails.gender || '',
 
@@ -180,17 +168,18 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
 
 
 
-
+//interface is not required as the we are collecting the data directly from the form
   onSubmit() {
     if (this.editMode) {
+      alert(this.empOfficialDetails.employeePersonalDetails.photoPath);
       const formData = new FormData();
       formData.append('id', this.employeeId);
       formData.append('fullName', this.form.value.fullName);
       formData.append('photo', this.selectedFile);
-      // formData.append('photoPath', this.form.value.photoPath2);
+      formData.append('existingPhotoPath', this.empOfficialDetails.employeePersonalDetails.photoPath);
+
       formData.append('dateOfBirth', this.form.value.dateOfBirth);
       formData.append('nationality', this.form.value.nationality);
-      //formData.append('bloodGroup', this.form.value.bloodGroup);
       formData.append('maritalStatus', this.form.value.maritalStatus);
       formData.append('gender', this.form.value.gender);
 
@@ -228,10 +217,9 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
       formData.append('id', this.employeeId);
       formData.append('fullName', this.form.value.fullName);
       formData.append('photo', this.selectedFile);
-      // formData.append('photoPath', this.form.value.photoPath2);
+
       formData.append('dateOfBirth', this.form.value.dateOfBirth);
       formData.append('nationality', this.form.value.nationality);
-      //formData.append('bloodGroup', this.form.value.bloodGroup);
       formData.append('maritalStatus', this.form.value.maritalStatus);
       formData.append('gender', this.form.value.gender);
 
@@ -268,6 +256,7 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
   }
 
   
+  //url is  temp only for displaying the image , not for submitting
 
   onSelectFile(event: any) {
   
@@ -280,13 +269,9 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
       reader.readAsDataURL(event.target.files[0]);
     }
     else {
-      // this.url = "";
       this.url = this.empOfficialDetails.employeePersonalDetails.photoPath
-      
-     // this.url = this.empOfficialDetails.employeePersonalDetails.photo
     }
 
     this.selectedPhoto = this.url;
-    alert(this.selectedFile);
   }
 }

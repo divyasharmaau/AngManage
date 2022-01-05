@@ -6,18 +6,10 @@
 
 .mat-card-title{
     height:100px;
-    background-color: #3e6c5b;
+    background-color: var(--darkSlateGreen);
     color:#ffff;
     padding:40px; 
 }
 .mat-card-content{
     margin-top: 10px;
-}
-.homeLink{
-    color:#e9801f;
-    cursor: pointer;
-}
-
-.homeLink:hover{
-    color:#c69734 ;
 }

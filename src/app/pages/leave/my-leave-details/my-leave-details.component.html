@@ -91,9 +91,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <mat-label class="otherLabel" for="filePath">File</mat-label>
-                                <!-- <input formControlName="filePath" matInput placeholder="File"  readonly> -->
+                                <input formControlName="filePath" matInput placeholder="File"  readonly>
                            
-                                <p>{{leave.filePath}}</p>
+                                <!-- <p>{{leave.filePath}}</p> -->
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                     <!--Submit-->
                     <mat-card-actions>
                         <!-- <a [routerLink]="['/home/editMyLeave/' , leave.id]" class="btn btn-outline-success m-5 ">Edit</a> -->
-                        <button  mat-raised-button [routerLink]="['/home/editMyLeave/' , leave.id]" type="submit">Edit</button>
+                        <button  mat-raised-button  class="edit-button" [routerLink]="['/home/editMyLeave/' , leave.id]" type="submit">Edit</button>
                     </mat-card-actions>
                 </mat-card-content>
             </mat-card>
