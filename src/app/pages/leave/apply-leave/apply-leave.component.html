@@ -1,20 +1,21 @@
 <div class="container-fluid">
-    <div class="card shadow-lg p-3 mb-5" *ngIf="leaveCreated">
-        <span class="alert text-center">{{successMessage}}</span>
+    <div class="card shadow p-3 mb-5" *ngIf="leaveCreated">
+        <span class="text-center">{{successMessage}}</span>
+        <p class="text-center home-link mt-2" [routerLink] = "['/home/myLeaveList' , employeeId]" >Back to My Leave List</p>
     </div>
     <div *ngIf="!leaveCreated">
         <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
             <mat-card>
                 <mat-card-header>
-                    <mat-card-title>Apply Leave</mat-card-title>
+                    <mat-card-title>Apply Leave  </mat-card-title>
                 </mat-card-header>
+              
                 <mat-card-content>
                     <div class="row mb-3 mt-3">
                         <div class="col-md-6">
                             <!-- <mat-form-field class="full-width"> -->
                                 <mat-label class="mb-2 applyLeaveLabel">Today's Date</mat-label> :  <span>{{currentDate | date: 'dd MMM yyyy'}}</span>
                         </div>
-                        
                         <div class="col-md-6">
                             <mat-label class="mb-2 applyLeaveLabel">Joining Date</mat-label>: 
                             <span>{{leave.joiningDate | date: 'dd MMM yyyy'}}</span>
@@ -26,29 +27,37 @@
                             <mat-form-field class="full-width" appearance="standard">
                                 <mat-label>From Date</mat-label>
                                 <!-- <input type="date" class="form-control" formControlName="dateOfBirth" id="dateOfBirth"> -->
-                                <input matInput formControlName="fromDate" [min]="minDate" [max]="maxDate"
-                                    [matDatepicker]="picker"> 
+                                <input matInput formControlName="fromDate" required (dateChange)="onTillDate()"
+                                    [matDatepicker]="picker" placeholder="mm/dd/yyyy" > 
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="hasError('fromDate')" class="error-block">
+                                   From Date is a required field
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="col-md-6">
                             <mat-form-field class="full-width" appearance="standard">
                                 <mat-label>Till Date</mat-label>
-                                <input matInput formControlName="tillDate" [min]="minDate" [max]="maxDate"
-                                    [matDatepicker]="pickerTillDate">
-                                <mat-datepicker-toggle matSuffix [for]="pickerTillDate"></mat-datepicker-toggle>
+                                <input matInput formControlName="tillDate" required 
+                                    [matDatepicker]="pickerTillDate" placeholder="mm/dd/yyyy" (dateChange)="onTillDate()"/>
+                                <mat-datepicker-toggle matSuffix [for]="pickerTillDate" ></mat-datepicker-toggle>
                                 <mat-datepicker #pickerTillDate></mat-datepicker>
+                               <mat-error *ngIf="hasError('tillDate')" class="error-block">
+                                    Till date is a required field
+                                </mat-error>    
+                              <mat-error *ngIf="tillDate.hasError('mismatch')" class="error-block"> 
+                                  Till Date should be equal to greater than From Date
+                            </mat-error>
                             </mat-form-field>
                         </div>
-    
                     </div>
                     <!--Leave Type Duration(dropdown box)-->
                     <div class="row">
                         <div class="col-md-6">
                             <mat-form-field class="full-width" appearance="standard">
                                 <mat-label>Leave Type</mat-label>
-                                <select formControlName="leaveType" matNativeControl id="mySelectId">
+                                <select formControlName="leaveType"  matNativeControl id="mySelectId">
                                     <option value="" disabled selected></option>
                                     <option value="Annual Leave">Annual Leave</option>
                                     <option value="Sick Leave">Sick Leave</option>
@@ -58,7 +67,7 @@
                         <div class="col-md-6">
                             <mat-form-field class="full-width" appearance="standard">
                                 <mat-label>Duration</mat-label>
-                                <select formControlName="duration" matNativeControl id="mySelectId">
+                                <select formControlName="duration"  matNativeControl id="mySelectId">
                                     <option value="" disabled selected></option>
                                     <option value="Full Day ">Full Day</option>
                                     <option value="First Half Day">First Half Day</option>
@@ -75,12 +84,13 @@
                                 <mat-label>Reason</mat-label>
                                 <input formControlName="reason" matInput placeholder="Reason">
                             </mat-form-field>
+                          
                         </div>
                     </div>
      
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-md-6">
-                            <mat-label class="mt-3 applyLeaveLabel">Leave Balance</mat-label><br>
+                            <mat-label>Leave Balance</mat-label><br>
                             <ul>
                                 <li>
                                    Annual Leave Balance: <span>{{leave.balanceAnnualLeave | number : '1.2-2'}}</span> <br>
@@ -100,11 +110,10 @@
                     </div>
                     <!--Submit-->
                     <mat-card-actions>
-                        <button mat-raised-button type="submit">Basic</button>
+                        <button mat-raised-button  [disabled]="form.invalid" class="green-button mt-4" type="submit">Apply</button>
                     </mat-card-actions>
                 </mat-card-content>
             </mat-card>
-    
         </form>
     </div>
 
