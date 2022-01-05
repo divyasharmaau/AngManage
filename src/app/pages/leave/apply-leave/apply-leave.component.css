@@ -1,12 +1,10 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
+mat-card{
+  padding: 38px;
+}
+mat-card-header{
+  justify-content: center;
+  margin-bottom: 48px;
+}
 
   .full-width{
     width: 100%;
@@ -20,7 +18,10 @@
     margin-left:10px;
 }
 
-.applyLeaveLabel{
-  font-weight: bold;
-  color:blue;
+.home-link{
+  color:green;
+}
+.home-link:hover {
+  color:var(--peruOrange);
+  font-weight: 500;
 }

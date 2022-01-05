@@ -13,17 +13,14 @@ export class BaseErrorFormComponent {
     }
 
     // retrieve a FormControl
-    getControl(later: string) {
-        return this.form.get(later);
+    getControl(feildInput: string) {
+        return this.form.get(feildInput);
     }
 
-    hasError(later: string) {
-        var e = this.getControl(later);
+    hasError(feildInput: string) {
+        var e = this.getControl(feildInput);
         return e && (e.dirty || e.touched) && e.invalid;
+       // return e && (e.dirty && e.errors);
     }
-    // hasFeedback(later:string){
-    //     var e = this.getControl(later);
-    //     return e && (!e.dirty || !e.touched) && !e.invalid;
-    // }
-    
+
 }

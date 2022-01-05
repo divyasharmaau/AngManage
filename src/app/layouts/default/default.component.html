@@ -1,4 +1,4 @@
-<app-header (toggleTheSideBar)="sideBarToggler($event)"></app-header>   
+<app-header (toggleTheSideBar)="sideBarToggler($event)" style="min-height:30px"></app-header>   
 <!--writing router-outlet here shows the dashboard works instead of default works why-->
 <mat-drawer-container>
     <mat-drawer mode="side" [opened] ="!sideBarOpen">

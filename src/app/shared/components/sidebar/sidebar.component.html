@@ -1,4 +1,6 @@
+
 <mat-nav-list>
+
     <div class="profile-card">
         <div class="header">
             <h2>{{userName}}</h2>
@@ -13,15 +15,15 @@
 <mat-divider></mat-divider>
 <h2 matSubheader><mat-icon>face</mat-icon>Employee</h2>
 <ul>
-    <li *ngIf="authenticationService.getRole()"><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/employeeList">EmployeeList</a></li>
-    <li><a mat-list-item routerLinkActive="list-item-active" routerLink="/">My Profile</a></li>
+    <li *ngIf="authenticationService.getRole()"><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/employeeList">Employee List</a></li>
+    <li><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/employeeDetails'" (click)= "onClickMyProfile()" >My Profile</a></li>
 </ul>
 
 <mat-divider></mat-divider>
 <h2 matSubheader><mat-icon>library_books</mat-icon>Leave</h2>
 <ul>
     <li><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/applyLeave">Apply Leave</a></li>
-    <li  *ngIf="authenticationService.getRole()"><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/leaveList">LeaveList</a></li>
+    <li  *ngIf="authenticationService.getRole()"><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/leaveList">Leave List</a></li>
     <li><a mat-list-item routerLinkActive="list-item-active" routerLink="/home/myLeaveList" (click)="onClick()" >My Leave List</a></li>
 </ul>
 <mat-divider></mat-divider>

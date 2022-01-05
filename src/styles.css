@@ -1,6 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~bootstrap/dist/css/bootstrap.css";
+
+
+:root {
+    --peruOrange: #c69734;
+    --green:green;
+    --darkSlateGreen:#3e6c5b; 
+    --lightSlateGreen:#71b199;
+    --errorRed:#a94442;
+  }
+  
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-
+background-color: var(--darkSlateGreen);
 }
+mat-label{
+    color: var(--peruOrange);
+    font-weight:500;
+  
+  }
+  label{
+    color:var(--peruOrange);
+    font-weight:500;
+  }
+
+  a{
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  a:hover{
+    color:var(--peruOrange);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+
+.green-button{
+    border: 1px solid #3e6c5b ;
+    background-color: #ffff;
+    color:#3e6c5b;
+}
+.green-button:hover{
+    color:#ffff;
+    background-color:#71b199;
+}
+
+.orange-button{
+    border: 1px solid var(--peruOrange);
+    background-color: #ffff;
+    color:var(--peruOrange);
+}
+
+.orange-button:hover{
+    color:#ffff;
+    background-color:var(--peruOrange);
+}
+
+/* ERROR BLOCK */
+
+.error-block{
+    font-size:small;
+    color:var(--errorRed);
+  }

@@ -1,7 +1,7 @@
 
 <div fxLayoutAlign="center center" fxFlexFill class="loginDiv" style="width:100%;">
-  <mat-card style="background-color: cornflowerblue;">
-      <mat-toolbar>Login Page</mat-toolbar>
+  <mat-card >
+      <mat-toolbar style="text-align: center;">Login to <span class="brandName">Manage</span></mat-toolbar>
       <form fxLayoutAlign="strech" fxLayout="column" class="loginForm" [formGroup] = "form" (ngSubmit)="onSubmit()">
           <mat-form-field >
             <mat-label>Email</mat-label>
@@ -13,7 +13,6 @@
             <input matInput type="password" placeholder="password" formControlName="password">
           </mat-form-field>
 
-
           <mat-form-field >
             <mat-label>Select your Role</mat-label>
             <mat-select formControlName="userRole" (change)="changeRole($event)" required>
@@ -22,14 +21,12 @@
               <mat-option  value="Registered User">User</mat-option>
             </mat-select>
           </mat-form-field>
-          <button mat-raised-button type="submit" [disabled]="form.invalid" class="signInButton" >Login</button>
-
-             
-      
-          
-
+          <button mat-raised-button class="loginButton" type="submit" [disabled]="form.invalid">Login</button>
         </form>
-        <button mat-raised-button type="submit" (click) = "onSubmitDemoAdmin()" class="loginDemoAdmin mt-5" style="background-color:aqua ;">Login as DemoAdmin</button>
-        <button mat-raised-button type="submit" (click)= "onSubmitDemoUser()" class="loginDemoUser mt-5" style="background-color: blueviolet;">Login as DemoUser</button>
+        <div class="demoButtons">
+          <button mat-raised-button type="submit" (click) = "onSubmitDemoAdmin()" class="loginDemoAdmin" >Login as DemoAdmin</button>
+        <button mat-raised-button type="submit" (click)= "onSubmitDemoUser()" class="loginDemoUser ">Login as DemoUser</button>
+       </div>
+      
   </mat-card>
 </div>

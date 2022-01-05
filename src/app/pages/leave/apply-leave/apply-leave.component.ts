@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
+import { BaseErrorFormComponent } from '../../employee/baseErrorFormComponent';
 import { Leave } from '../interfaces/leave';
 import { LeaveService } from '../services/leave.service';
 
@@ -15,21 +16,20 @@ import { LeaveService } from '../services/leave.service';
   styleUrls: ['./apply-leave.component.css']
 })
 
-export class ApplyLeaveComponent implements OnInit {
+export class ApplyLeaveComponent extends BaseErrorFormComponent implements OnInit {
 
   form: FormGroup;
-  //currenDate:Date;
+
   currentDate = new Date();
   minDate: Date;
   maxDate: Date;
-
+  startDate: Date;
+  employeeId :string;
   selectedFile: File = null;
   url: any;
   photoPath2: string = "";
-
-  //public leave :Leave;
-
   leave = <Leave>{};
+
   successMessage: string = "Leave has been applied";
   leaveCreated: boolean = false;
 
@@ -40,12 +40,16 @@ export class ApplyLeaveComponent implements OnInit {
 
 
   ) {
+    super();
+
+    var empId = this.authenticationService.getUserId();
+    this.employeeId = empId;
 
     this.form = this.fb.group({
       "currentDate": new FormControl(this.currentDate.toISOString().split("T")[0]),
       "joiningDate": [''],
-      "fromDate": [''],
-      "tillDate": [''],
+      "fromDate": ['',Validators.required],
+      "tillDate": ['',Validators.required],
       "leaveType": [''],
       "duration": [''],
       "reason": [''],
@@ -54,12 +58,12 @@ export class ApplyLeaveComponent implements OnInit {
       "file": ['']
     });
 
-
-
+ 
     // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 20, 0, 1);
     this.maxDate = new Date(currentYear + 1, 11, 31);
+ 
   }
 
 
@@ -72,8 +76,6 @@ export class ApplyLeaveComponent implements OnInit {
         this.form.get('balanceAnnualLeave').setValue(this.leave.balanceAnnualLeave);
         this.form.get('balanceSickLeave').setValue(this.leave.balanceSickLeave);
         this.form.get('joiningDate').setValue(this.leave.joiningDate);
-
-
       }
       );
   }
@@ -93,12 +95,33 @@ export class ApplyLeaveComponent implements OnInit {
 
   }
 
-  onSubmit() {
-    alert("sub,it");
+  onTillDate(){
+      const startDate = this.fromDate.value;
+      const endDate = this.tillDate.value;
+    if(endDate < startDate ){
+      this.tillDate.setErrors({mismatch:true});
+    }
+    else if (startDate == null && endDate != null){
+      this.tillDate.setErrors({mismatch:true});
+      this.fromDate.setErrors({mismatch:true});
+    }
+    else
+    {
+      this.tillDate.setErrors(null);
+    }
+  }
 
-    alert(moment(new Date(this.form.value.fromDate)).format("DD/MM/YYYY").toString());
-    alert(this.form.value.leaveType)
-    alert(this.form.value.joiningDate);
+  get fromDate(): AbstractControl{
+    return this.form.controls['fromDate'];
+  }
+
+  get tillDate() : AbstractControl{
+    return this.form.controls['tillDate'];
+  }
+  
+
+  onSubmit() {
+
     var userId = this.authenticationService.getUserId();
     const formData = new FormData();
     formData.append('UserId', userId);
@@ -113,19 +136,14 @@ export class ApplyLeaveComponent implements OnInit {
     formData.append('BalanceSickLeave', this.leave.balanceSickLeave.toString());
     formData.append('File', this.selectedFile);
 
-    alert("formData" + formData);
 
 
     this.leaveService.applyLeave(userId, formData)
       .subscribe(data => {
         this.leave = data;
         this.leaveCreated = true;
-
-        // this. employeePersonalDetails =data;
-        // this.employeeCreatedOrUpdated = true;
       })
 
-    // this.leaveService.applyLeave(userId , formData);
 
   }
 

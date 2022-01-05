@@ -23,6 +23,8 @@ export class EditLeaveAdminComponent implements OnInit {
   changeLeaveStatus: boolean = false;
   approveButton: boolean = false;
   declineButton: Boolean = false;
+  successMessage: string ="The Leave has been Edited";
+  leaveEdited: boolean = false;
 
   constructor(private leaveService: LeaveService, private activatedRoute: ActivatedRoute, private http: HttpClient,
     private fb: FormBuilder) {
@@ -74,8 +76,8 @@ export class EditLeaveAdminComponent implements OnInit {
         this.form.get('leaveStatus').setValue(this.leaveDetails.leaveStatus);
         this.form.get('currentDate').setValue(moment(this.leaveDetails.currentDate).format('DD-MM-YYYY'));
         this.form.get('joiningDate').setValue(moment(this.leaveDetails.joiningDate).format('DD-MM-YYYY'))
-        this.form.get('fromDate').setValue(this.leaveDetails.fromDate);
-        this.form.get('tillDate').setValue(this.leaveDetails.tillDate);
+        this.form.get('fromDate').setValue(moment(this.leaveDetails.fromDate).format('DD-MM-YYYY'));
+        this.form.get('tillDate').setValue(moment(this.leaveDetails.tillDate).format('DD-MM-YYYY'));
         this.form.get('leaveType').setValue(this.leaveDetails.leaveType);
         this.form.get('duration').setValue(this.leaveDetails.duration);
         this.form.get('reason').setValue(this.leaveDetails.reason);
@@ -116,11 +118,15 @@ export class EditLeaveAdminComponent implements OnInit {
       }
       this.http.put<EmployeeLeave>('https://localhost:44330/api/leave/LeaveStatusByAdmin', body)
         .subscribe(data => {
+          this.employeeLeave = data;
+          this.leaveEdited = true;
         })
     }
     else if(lId == "declinedId") {
       this.http.put<EmployeeLeave>('https://localhost:44330/api/leave/LeaveStatusByAdmin', body)
         .subscribe(data => {
+          this.employeeLeave = data;
+          this.leaveEdited = true;
         })
     }
 

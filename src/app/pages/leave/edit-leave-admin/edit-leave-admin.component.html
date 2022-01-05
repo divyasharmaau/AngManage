@@ -1,10 +1,11 @@
 
 <div class="container-fluid">
-    <!-- <div class="card shadow-lg p-3 mb-5" *ngIf="leaveEdited">
+    <div class="card shadow-lg p-3 mb-5" *ngIf="leaveEdited">
         <span class="alert text-center">{{successMessage}}</span>
-    </div> -->
+        <p class="text-center home-link mt-2" [routerLink] = "['/home/leaveList']" >Back to Leave List</p>
+    </div>
    
-    <!-- <div *ngIf="!leaveEdited"> -->
+    <div *ngIf="!leaveEdited">
         <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
    
             <mat-card>
@@ -15,12 +16,10 @@
                     
                     <div class="row mb-3 mt-3">
                         <div class="col-md-6">
-                         
                                 <mat-form-field class="full-width" appearance="standard">
                                     <mat-label>Date On Which Applied</mat-label>
                                     <input formControlName="currentDate" matInput placeholder="Date Applied" readonly>
                                 </mat-form-field>
-                        
                         </div>
                         
                         <div class="col-md-6">
@@ -28,7 +27,7 @@
                             <!-- <span>{{leaveDetails.joiningDate | date: 'dd MMM yyyy'}}</span> -->
                             <mat-form-field class="full-width"  appearance="standard">
                                 <mat-label>Joining Date</mat-label> 
-                                <input formControlName="joiningDate"   matInput  placeholder="Joining Date" readonly>
+                                <input formControlName="joiningDate"  matInput  placeholder="Joining Date" readonly>
                             </mat-form-field>
                         </div>
                     </div>
@@ -135,7 +134,7 @@
             </mat-card>
     
         </form>
-    <!-- </div> -->
+    </div>
 
 </div>
 

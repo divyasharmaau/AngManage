@@ -15,6 +15,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
 
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NotPermittedComponent } from './not-permitted/not-permitted.component';
+import {MatCardModule} from '@angular/material/card';
+
+
 
 
 
@@ -25,7 +30,9 @@ import {MatListModule} from '@angular/material/list';
   declarations: [
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    PageNotFoundComponent,
+    NotPermittedComponent
   ],
   imports: [
     CommonModule,
@@ -36,12 +43,15 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   exports:[
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    PageNotFoundComponent,
+    NotPermittedComponent
   ]
 })
 export class SharedModule { }

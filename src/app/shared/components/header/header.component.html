@@ -1,4 +1,4 @@
-<mat-toolbar >
+<mat-toolbar>
     <mat-toolbar-row>
         <button mat-icon-button (click)="toggleSideBar()">
             <mat-icon>menu</mat-icon>
@@ -8,18 +8,13 @@
 
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
-                <!-- <li>
-                    <button mat-icon-button>
-                        <mat-icon>settings</mat-icon>
-                    </button>
-                </li> -->
                 <li>
                     <button mat-button [matMenuTriggerFor]="menu">
                         <mat-icon>logout</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="logout()">
-                            <mat-icon  >exit_to_app</mat-icon>
+                            <mat-icon>exit_to_app</mat-icon>
                             Sign out
                         </button>
                     </mat-menu>
@@ -28,3 +23,4 @@
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
+

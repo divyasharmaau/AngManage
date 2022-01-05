@@ -45,6 +45,9 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(["/home/myLeaveList", id])
   }
 
- 
+  onClickMyProfile(){
+    var id = this.authenticationService.getUserId();
+    this.router.navigate(["/home/employeeDetails", id])
+  }
 
 }

@@ -32,7 +32,6 @@ export class AuthenticationService {
       role_name: userRole,
       grant_type: "password",
       client_id: this.client_id
-
     };
 
     return this.http.post<TokenResponse>("https://localhost:44330/api/account/auth/", data)

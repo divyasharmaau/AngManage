@@ -6,9 +6,14 @@
 
 mat-drawer {
     width: 250px;
-    
+    background-color: #3e6c5b;
+    /* color:#eaeaea; */
+   color:black;
+    background: url(/assets/img/sidebarImage.jpg) repeat-y;
+   
   }
-  
+
+
   mat-drawer-container {
     height: 100%;
 

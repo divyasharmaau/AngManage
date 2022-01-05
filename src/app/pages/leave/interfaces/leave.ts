@@ -1,3 +1,5 @@
+import { EmployeeLeave } from "./employeeLeave";
+
 export interface Leave{
     id : number, 
     currentDate : Date,
@@ -13,6 +15,7 @@ export interface Leave{
     balanceAnnualLeave:number,
     balanceSickLeave:number,
     joiningDate:Date
+
     //IFormFile: File
 
 }

@@ -19,6 +19,8 @@ import { MyLeaveListComponent } from './pages/leave/my-leave-list/my-leave-list.
 import { EditLeaveAdminComponent } from './pages/leave/edit-leave-admin/edit-leave-admin.component';
 import { RoleGuard } from './guards/role.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { NotPermittedComponent } from './shared/not-permitted/not-permitted.component';
 
 
 
@@ -77,8 +79,16 @@ const routes: Routes = [
     {
       path:'editLeaveAdmin/:id', component:EditLeaveAdminComponent, canActivate:[RoleGuard]
     }
-  ], canActivate:[AuthGuard]
-  }];
+      ], canActivate:[AuthGuard]
+    },
+    {
+      path:'notPermitted', component:NotPermittedComponent
+    },
+    {
+      path:'**', component:PageNotFoundComponent
+    }
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

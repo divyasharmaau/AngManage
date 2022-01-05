@@ -1,23 +1,19 @@
 mat-card{
-    padding: 2rem 5rem 2rem 5rem;
+  padding: 38px;
 }
 mat-card-header{
-    justify-content: center;
-    margin-bottom: 3rem;
-}
-mat-label{
-    font-weight: bold;
-    color:blue;
-    font-size: 1rem;
-  }
-
-  .otherLabel{
-
-    color:blue;
-    font-size: 0.8rem;
-   
+  justify-content: center;
+  margin-bottom: 48px;
 }
 
   .full-width {
     width: 100%;
   }
+  .home-link{
+    color:var(-green);
+  }
+  .home-link:hover {
+    color:var(--peruOrange);
+    font-weight: 500;
+  }
+  
