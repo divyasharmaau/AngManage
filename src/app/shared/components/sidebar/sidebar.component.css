@@ -20,4 +20,5 @@
     }
 ul li a:hover{
   background-color: var(--darkSlateGreen);
+  color:var(--listWhite);
 }

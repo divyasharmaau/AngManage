@@ -9,6 +9,8 @@
     --darkSlateGreen:#3e6c5b; 
     --lightSlateGreen:#71b199;
     --errorRed:#a94442;
+    --errorGreen: #42A948; 
+    --listWhite:#eaeaea;
   }
   
 html, body { height: 100%; }
@@ -38,13 +40,13 @@ mat-label{
 
 
 .green-button{
-    border: 1px solid #3e6c5b ;
+    border: 1px solid var(--darkSlateGreen) ;
     background-color: #ffff;
-    color:#3e6c5b;
+    color:var(--darkSlateGreen);
 }
 .green-button:hover{
     color:#ffff;
-    background-color:#71b199;
+    background-color:var(--lightSlateGreen);
 }
 
 .orange-button{
@@ -58,9 +60,30 @@ mat-label{
     background-color:var(--peruOrange);
 }
 
+.edit-button{
+    border: 1px solid var(--darkSlateGreen) ;
+    color: #ffff;
+    background-color:var(--lightSlateGreen);
+ 
+}
+.edit-button:hover{
+    color:#ffff;
+    background-color:var(--lightSlateGreen);
+    background-color:var(--darkSlateGreen);
+}
 /* ERROR BLOCK */
 
 .error-block{
     font-size:small;
     color:var(--errorRed);
   }
+
+  /*Home Link*/
+.home-link{
+    color:var(--green);
+  }
+  .home-link:hover {
+    color:var(--peruOrange);
+    font-weight: 500;
+  }
+  

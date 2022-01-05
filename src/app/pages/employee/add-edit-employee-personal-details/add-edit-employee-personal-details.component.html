@@ -2,8 +2,9 @@
 <div class="container-fluid">
     <div class="row mt-3">
         <div class="col-12">
-            <div class="card shadow-lg p-3 mb-5" *ngIf="employeeCreatedOrUpdated">
-                <span class="alert">{{successMessage}}</span>
+            <div class="card shadow p-3 mb-5" *ngIf="employeeCreatedOrUpdated">
+                <span class="text-center">{{successMessage}}</span>
+                <p class="text-center home-link mt-2" [routerLink] = "['/home/employeeDetails', employeeId]">Back to My Profile</p>
             </div>
 
             <div class="card shadow-lg p-3 mb-5" *ngIf="!employeeCreatedOrUpdated">
@@ -34,6 +35,15 @@
                         </div>
 
                         <!--Preview -->
+                        <div *ngIf="!editMode" class="form-group col-md-6">
+                            <div *ngIf="url">
+                                <img [src]="url" style="width: 150px; height:150px;" />
+                            </div>
+                            <div *ngIf="!url">
+                                <img src={{defaultPhoto}} width="150px" />
+                               
+                            </div>
+                        </div>
                         <div *ngIf="editMode" class="form-group col-md-6">
                             <div *ngIf="url">
                                 <img [src]="url" style="width: 150px; height:150px;" />
@@ -203,8 +213,8 @@
                     <div class="row mt-3 mt-3">
                         <div class="col-md-4">
                             <!-- <button type="submit" class="btn btn-outline-success m-5 ">Create</button> -->
-                            <button *ngIf="editMode" type="submit" [disabled] class="btn btn-outline-info m-5">Apply Changes</button>
-                            <button *ngIf="!editMode" type="submit" [disabled]="form.invalid" class="btn btn-success m-5">Create</button>
+                            <button *ngIf="editMode" type="submit" [disabled] class="btn edit-button m-5">Apply Changes</button>
+                            <button *ngIf="!editMode" type="submit" [disabled]="form.invalid" class="btn green-button m-5">Create</button>
                             <a class="btn btn-outline-secondary m-5 " [routerLink] = "['/home/dashboard']">Cancel</a>>
                         </div>
                         <div class="col-md-4">

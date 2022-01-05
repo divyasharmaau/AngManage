@@ -1,14 +1,14 @@
 .help-block{
     font-size:small;
-    color:#a94442;
+    color:var(--errorRed);
 }
 
 .has-block{
-  border: 1px solid #a94442; 
+  border: 1px solid var(--errorRed);
 }
 
 .ng-valid[required], .ng-valid.required {
-  border: 1px solid #42A948; 
+  border: 1px solid var(--errorGreen); 
 }
 
   label{
@@ -18,4 +18,15 @@
   .form-control{
     min-height:38px;
     padding: 0.375rem 0.75rem;
+}
+
+input[type="text"]:focus
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+button:focus {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--peruOrange);
+ 
 }
