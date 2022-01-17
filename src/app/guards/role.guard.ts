@@ -17,8 +17,8 @@ export class RoleGuard implements CanActivate {
     }
     else
     {
-      alert("You do not have acces to this page");
-      this.router.navigate(['home']);
+     
+      this.router.navigate(['notPermitted']);
        return false;
     }
   }

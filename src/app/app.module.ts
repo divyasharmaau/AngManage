@@ -18,7 +18,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-//import { CustomErrorValidationComponent } from 'src/app/pages/employee/custom-error-validation/custom-error-validation.component';
 
 
 @NgModule({

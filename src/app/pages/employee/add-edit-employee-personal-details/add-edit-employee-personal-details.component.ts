@@ -2,7 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
-import { BaseErrorFormComponent } from '../baseErrorFormComponent';
+import { BaseErrorFormComponent } from 'src/app/shared/baseErrorFormComponent';
+
 import { EmployeeOfficialDetailsComponent } from '../employee-official-details/employee-official-details.component';
 import { Employee } from '../interfaces/employee';
 import { EmployeePersonalDetails } from '../interfaces/employeePersonalDetails';

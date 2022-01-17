@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
-import { BaseErrorFormComponent } from '../../employee/baseErrorFormComponent';
+import { BaseErrorFormComponent } from 'src/app/shared/baseErrorFormComponent';
+
 import { Leave } from '../interfaces/leave';
 import { LeaveService } from '../services/leave.service';
 

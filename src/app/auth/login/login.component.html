@@ -3,23 +3,36 @@
   <mat-card >
       <mat-toolbar style="text-align: center;">Login to <span class="brandName">Manage</span></mat-toolbar>
       <form fxLayoutAlign="strech" fxLayout="column" class="loginForm" [formGroup] = "form" (ngSubmit)="onSubmit()">
-          <mat-form-field >
+          <mat-form-field class="mb-2">
             <mat-label>Email</mat-label>
-            <input  matInput type="email" placeholder="email@mail.com"  formControlName="email">
+          
+            <input  matInput type="email"  placeholder="email@mail.com" required formControlName="email" 
+             [pattern]="emailPattern" >
+
+            <mat-error *ngIf="(form.get('email').invalid && form.get('email').touched) || form.get('email').dirty">
+              <small class="text-danger" *ngIf="form.get('email').errors?.required">Email address is required</small>
+              <small class="text-danger" *ngIf="form.get('email').errors?.pattern">Email address is invalid</small>
+            </mat-error>
           </mat-form-field>
         
-          <mat-form-field >
+          <mat-form-field  class="mb-2" >
             <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="password" formControlName="password">
+            <input matInput type="password" placeholder="password" required formControlName="password">
+            <mat-error *ngIf="hasError('password')" class="error-block" >
+              Password is a required field
+            </mat-error>
           </mat-form-field>
 
-          <mat-form-field >
+          <mat-form-field  class="mb-2">
             <mat-label>Select your Role</mat-label>
             <mat-select formControlName="userRole" (change)="changeRole($event)" required>
               <mat-option>--</mat-option>
               <mat-option value="Administartor">Administartor</mat-option>
               <mat-option  value="Registered User">User</mat-option>
             </mat-select>
+            <mat-error *ngIf="hasError('userRole')" class="error-block" >
+              Role is a required field
+            </mat-error>
           </mat-form-field>
           <button mat-raised-button class="loginButton" type="submit" [disabled]="form.invalid">Login</button>
         </form>

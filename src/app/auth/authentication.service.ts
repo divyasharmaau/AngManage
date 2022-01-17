@@ -4,14 +4,21 @@ import { isPlatformBrowser } from '@angular/common';
 import { map} from 'rxjs/operators';
 import { platformBrowser } from '@angular/platform-browser';
 import { TokenResponse } from './interfaces/tokenResponse';
+import { environment } from '../../environments/environment';
+
+
 
 
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class AuthenticationService {
 
+  baseUrl = environment.baseUrl;
+  
   client_id: string = "Manage";
   authKey: string = "auth";
   roleKey: string ="role";
@@ -34,7 +41,8 @@ export class AuthenticationService {
       client_id: this.client_id
     };
 
-    return this.http.post<TokenResponse>("https://localhost:44330/api/account/auth/", data)
+    return this.http.post<TokenResponse>(this.baseUrl +  "/account/auth/", data)
+    
     .pipe(map(tokenkDetails =>{
       let tokenValid = tokenkDetails && tokenkDetails.token;
       console.log(JSON.stringify(tokenkDetails) + "  tokenDetails");
@@ -45,6 +53,7 @@ export class AuthenticationService {
         this.setProfilePicture(tokenkDetails.profile_picture_path);
         this.setUser(tokenkDetails.user_name);
       }
+      alert(this.baseUrl + "hello");
       return tokenkDetails;
     }))
   }

@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from '../interfaces/employee';
-import { EmployeeSharedService } from '../services/employee-shared-service.service';
+
 import { EmployeeService } from '../services/employee.service';
 
 
@@ -24,13 +24,9 @@ export class EmployeeListComponent implements OnInit {
 
 
   constructor(private employeeService: EmployeeService,
-    // private employeeSharedService: EmployeeSharedService
+  
     ) { 
-    //  this.employeeSharedService.searchEmployee$
-    //  .subscribe(x =>{
-    //    this.employeeList = x;
-
-    //  });
+   
    
 }
 
@@ -38,16 +34,9 @@ export class EmployeeListComponent implements OnInit {
     if(this.employeeList == null){
     this.getEmployeeList();
     }
-    //this.getEmployeeList();
+    
   }
 
-// search()
-// {
-//   this.employeeService.searchByEmail(this.textSearch)
-//   .subscribe(data =>{
-//     this.employeeList = data;
-//   })
-// }
 
   getEmployeeList(){
     this.employeeService.getEmployeeList()

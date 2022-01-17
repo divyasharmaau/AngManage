@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
-import { BaseErrorFormComponent } from '../../employee/baseErrorFormComponent';
+import { BaseErrorFormComponent } from 'src/app/shared/baseErrorFormComponent';
+
 import { EmployeeLeave } from '../interfaces/employeeLeave';
 import { Leave } from '../interfaces/leave';
 

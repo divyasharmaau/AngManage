@@ -36,12 +36,10 @@ export class MyLeaveListComponent implements OnInit {
   maxDate: Date;
   fromdate: any;
 
- // public employeeLeaves: MatTableDataSource<AppUserLeaveModel>;
 
 
   public displayedColumns = ['fullName', 'fromDate', 'tillDate','leaveType','numberOfLeaveDays','reason','leaveStatus','leaveDetails','delete' ];
-  //the source where we will get the data
-  //public dataSource = new MatTableDataSource<AppUserLeaveModel>();
+
   public employeeLeaves: MatTableDataSource<AppUserLeaveModel>;
 
   
@@ -61,16 +59,8 @@ ngOnInit(): void{
 
   var empId = this.authenticationService.getUserId();
   this.employeeId = empId;
-//   var Lid = +this.activatedRoute.snapshot.paramMap.get('employeeLeave.leaveId');
-// alert(Lid+ "hello");
+
   this.showAllMyLeaves(empId, null);
-
-  // this.employeeLeaves.sort = this.sort;
-
-  // const sortState: Sort = {active: 'fromDate', direction: 'desc'};
-  // this.sort.active = sortState.active;
-  // this.sort.direction = sortState.direction;
-  // this.sort.sortChange.emit(sortState);
 }
   
 showAllMyLeaves(id:string, fromDate:any){
@@ -79,49 +69,12 @@ showAllMyLeaves(id:string, fromDate:any){
     this.employeeLeaves = new MatTableDataSource<AppUserLeaveModel>(data);
     this.employeeLeaves.paginator = this.paginator;
     this.employeeLeaves.sort = this.sort;
-    //this.dataSource.data = data
+
   });
    
 }
 
-// deleteMyLeave(leaveId){
-//   alert(leaveId);
-
-
-//   if(confirm("Do you  want to delete this leave")){
-//     this.leaveService.deleteLeave(leaveId)
-//     .subscribe(data =>{
-//       this.leaveDeleted = true;
-//     //this.showAllMyLeaves(this.employeeId);  
-//   },error => console.log(error));
-
-// }
-
-// }
-// changeEvent(event){
-
-//   let filterValue = moment(event.value).format("YYYY-MM-DD");
-//   this.fromDate
-//   this.showAllLeaves(filterValue);
-//   this.employeeLeaves.filter = filterValue;
-//   if(this.employeeLeaves.paginator){
-//     this.employeeLeaves.paginator.firstPage();
-//   }
-
-  
-// }
-// changeEvent(event){
-//   alert("change event my Laeve list");
-//   let filterValue = moment(event.value).format("YYYY-MM-DD");
-//   this.leaveService.getAllMyLeaves(filterValue);
-//   this.employeeLeaves.filter = filterValue;
-//   if(this.employeeLeaves.paginator){
-//     this.employeeLeaves.paginator.firstPage();
-//   }
-// }
 inputEvent(event){
-  // Return date object
-  //alert("input Event"); 
   console.log(event.value);
 }
 
@@ -152,25 +105,16 @@ applyFilterChecked(column: string, filterValue: string) {
   }
 }
 deleteMyLeave(leaveId){
-  alert(leaveId);
   this.dialogService.openConfirmDialog('Do you  want to delete this leave?')
   .afterClosed().subscribe(res => {
     if(res){
-      this.leaveService.deleteLeave(leaveId).subscribe(data => {
+      this.leaveService.deleteLeave(leaveId)
+      .subscribe(data => {
         this.leaveDeleted = true;
-        this.leaveService.getAllMyLeavesDelete(this.employeeId);
-        //this.showAllMyLeaves(this.employeeId);
+        this.showAllMyLeaves(this.employeeId, "1970-01-01");
       })
     }
   })
-
-  // if(confirm("Do you  want to delete this leave")){
-  //   this.leaveService.deleteLeave(leaveId)
-  //   .subscribe(data =>{
-  //     this.leaveDeleted = true;
-  //   //this.showAllMyLeaves(this.employeeId);  
-  // },error => console.log(error));
-
 }
 close(){
   //if this is true , this function close() will be called

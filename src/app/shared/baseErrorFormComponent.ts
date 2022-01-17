@@ -8,19 +8,23 @@ export class BaseErrorFormComponent {
 
     // the form model
     form: FormGroup;
-
+ 
     constructor() {
     }
 
     // retrieve a FormControl
-    getControl(feildInput: string) {
-        return this.form.get(feildInput);
+    getControl(feild: string) {
+        return this.form.get(feild);
     }
 
-    hasError(feildInput: string) {
-        var e = this.getControl(feildInput);
+    hasError(feild: string) {
+        var e = this.getControl(feild);
         return e && (e.dirty || e.touched) && e.invalid;
-       // return e && (e.dirty && e.errors);
+        //return e && (e.dirty && e.errors);
     }
 
+    hasErrorPattern(feild: string){
+        var e = this.form.get(feild);
+        return e && (e.errors.pattern);
+    }
 }

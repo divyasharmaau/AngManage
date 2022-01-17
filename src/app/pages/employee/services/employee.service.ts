@@ -2,54 +2,54 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Employee } from '../interfaces/employee';
 import { EmployeePersonalDetails } from '../interfaces/employeePersonalDetails';
-
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor(private http : HttpClient) { }
+  baseUrl = environment.baseUrl;
+
+  constructor(private http: HttpClient) { }
 
 
-  getEmployeeList(){
-    return this.http.get<Employee[]>('https://localhost:44330/api/employee/')
+  getEmployeeList() {
+    return this.http.get<Employee[]>(this.baseUrl + '/employee/')
   }
 
-  getEmployeeOfficialDetails(id: string){
-    return this.http.get<Employee>('https://localhost:44330/api/employee/' + id)
+  getEmployeeOfficialDetails(id: string) {
+    return this.http.get<Employee>(this.baseUrl + '/employee/' + id)
   }
 
-  getEmployeePersonalDetails(id: string){
-    return this.http.get<EmployeePersonalDetails>('https://localhost:44330/api/employee/GetEmployeePersonalDetails/' + id)
+  getEmployeePersonalDetails(id: string) {
+    return this.http.get<EmployeePersonalDetails>(this.baseUrl + '/employee/GetEmployeePersonalDetails/' + id)
   }
 
-  createEmployee(employeeDetails: Employee){
-    return this.http.post<Employee>('https://localhost:44330/api/employee/', employeeDetails)
+  createEmployee(employeeDetails: Employee) {
+    return this.http.post<Employee>(this.baseUrl + '/employee/', employeeDetails)
   }
 
-  editEmployee(id:string, employeeDetails: Employee){
-    return this.http.put<Employee>("https://localhost:44330/api/employee/" + id , employeeDetails)
+  editEmployee(id: string, employeeDetails: Employee) {
+    return this.http.put<Employee>(this.baseUrl + '/employee/' + id, employeeDetails)
 
   }
 
-  
-  createEmpPersonalDetails(empPersonalDetails : FormData){
+
+  createEmpPersonalDetails(empPersonalDetails: FormData) {
     return this.http.post<EmployeePersonalDetails>
-    ('https://localhost:44330/api/employee/CreateEmployeePersonalDetails/', empPersonalDetails)
-  }
-  
-  editEmployeePersonalDetails(id:string,employeePersonalDetails: FormData){
-    return this.http.put<EmployeePersonalDetails>('https://localhost:44330/api/employee/UpdateEmployeePersonalDetails/'+ id, employeePersonalDetails);
+      (this.baseUrl + '/employee/CreateEmployeePersonalDetails/', empPersonalDetails)
   }
 
-  search(searchTerm: string){
-    return this.http.get<Employee[]>('https://localhost:44330/api/employee/Search/' + searchTerm);
+  editEmployeePersonalDetails(id: string, employeePersonalDetails: FormData) {
+    return this.http.put<EmployeePersonalDetails>(this.baseUrl + '/employee/UpdateEmployeePersonalDetails/' + id, employeePersonalDetails);
+  }
+
+  search(searchTerm: string) {
+    return this.http.get<Employee[]>(this.baseUrl + '/employee/Search/' + searchTerm);
   }
 
   getDataSynchronous(searchTerm: string) {
-    return  this.http.get<Employee[]>('https://localhost:44330/api/employee/Search/' + searchTerm).toPromise()
-}
-
-
+    return this.http.get<Employee[]>(this.baseUrl + '/api/employee/Search/' + searchTerm).toPromise()
+  }
 }   
