@@ -19,7 +19,7 @@ import { AuthenticationService } from '../authentication.service';
 export class LoginComponent extends BaseErrorFormComponent implements OnInit {
 
   form: FormGroup;
-  emailPattern= "^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(mail)\.com$";
+  emailPattern= "^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail)\.com$";
 
 
   constructor(private fb : FormBuilder, 
@@ -74,7 +74,7 @@ export class LoginComponent extends BaseErrorFormComponent implements OnInit {
   }
 
   onSubmitDemoUser(){
-    var username = "ariyabishop@mail.com";
+    var username = "useratdemo@gmail.com";
     var password = "Password1!";
     var userRole = "Registered User";
   this.authenticationService.login(username,password,userRole)

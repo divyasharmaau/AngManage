@@ -173,7 +173,7 @@ import { EmployeeService } from '../services/employee.service';
           jobTitle: this.form.value.jobTitle,
           status: this.form.value.status,
           daysWorkedInWeek: this.daysWorkedInWeek.nativeElement.value,
-          numberOfHoursWorkedPerDay: this.form.value.numberOfHoursWorkedPerDay,
+          numberOfHoursWorkedPerDay: this.numberOfHoursWorkedPerDay.nativeElement.value,
           departmentId: this.form.value.departmentId,
           manager: this.form.value.manager
       }
