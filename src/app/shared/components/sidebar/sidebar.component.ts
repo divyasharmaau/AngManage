@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
   constructor(public authenticationService: AuthenticationService, private router: Router) { 
 
     
-    this.profilePicture = authenticationService.getProfilePictute();
+    this.profilePicture = authenticationService.getProfilePicture();
     this.isRoleAdmin = authenticationService.getRole();
     this.userName = authenticationService.getUser();
     

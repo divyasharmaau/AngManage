@@ -13,9 +13,12 @@ export interface EmployeePersonalDetails {
     state: string,
     country: string,
     zipCode: number,
+
     photoPath: string, //domainphotoPath
     existingPhotoPath: string,
+    apiPhotoPath:string;
     photo: string, //upload
+    
     dateOfBirth: Date,
     nationality: string,
     bloodGroup: string,

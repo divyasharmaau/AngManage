@@ -7,9 +7,6 @@ import { TokenResponse } from './interfaces/tokenResponse';
 import { environment } from '../../environments/environment';
 
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -89,7 +86,7 @@ export class AuthenticationService {
 
   getRole(){
     var result =  localStorage.getItem(this.roleKey);
-    if(result == "Administartor")
+    if(result == "Administrator")
     {
       return true;
     }
@@ -101,7 +98,7 @@ export class AuthenticationService {
 
   getTheRole(): boolean{
     var result =  localStorage.getItem(this.roleKey);
-    if(result == "Administartor")
+    if(result == "Administrator")
     {
       return true;
     }
@@ -112,9 +109,11 @@ export class AuthenticationService {
 
   setProfilePicture(profilePicture : string | null): boolean{
     if(isPlatformBrowser(this.platformId)){
+     // alert("auth service: profilePicture" + profilePicture);
       if(profilePicture){
         localStorage.setItem(
           this.profilePictureKey, profilePicture); 
+         // alert("auth service: profilePictureKey" + this.profilePictureKey);
       }
       else{
         localStorage.removeItem(this.profilePictureKey);
@@ -122,8 +121,9 @@ export class AuthenticationService {
       }
     return true;
   }
-  getProfilePictute(){
+  getProfilePicture(){
     var result =  localStorage.getItem(this.profilePictureKey);
+   // alert("auth service this.profilePictureKey" + this.profilePictureKey);
     if(result )
     {
       return result;
@@ -158,6 +158,7 @@ export class AuthenticationService {
   //   }
   //   return false;
   // }
+
 
     isLoggedIn(): boolean{
     if(platformBrowser(this.platformId)){

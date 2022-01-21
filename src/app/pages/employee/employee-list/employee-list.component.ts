@@ -16,7 +16,7 @@ export class EmployeeListComponent implements OnInit {
 
   textSearch : string="";
   employeeList : any;
-  displayedColumns: string[] = ['employeePersonalDetails.photoPath','fullName', 'department.name','status','manager', 'email'];
+  displayedColumns: string[] = ['employeePersonalDetails.apiPhotoPath','fullName', 'department.name','status','manager', 'email'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatSort) sort: MatSort | undefined;

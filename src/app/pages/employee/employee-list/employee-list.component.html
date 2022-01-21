@@ -29,11 +29,11 @@
     
         <table mat-table [dataSource]="employeeList" class="example-table" matSort  matSortActive="fullName" matSortDirection="asc" >
           <!--Employee Photo-->
-          <ng-container matColumnDef="employeePersonalDetails.photoPath">
+          <ng-container matColumnDef="employeePersonalDetails.apiPhotoPath">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let employee" >
                 <div *ngIf ="employee.employeePersonalDetails">
-                 <img src={{employee.employeePersonalDetails.photoPath}}  style="width:30px; border-radius: 50%;"/>   
+                 <img src={{employee.employeePersonalDetails.apiPhotoPath}}  style="width:30px; border-radius: 50%;"/>   
                 </div>
             
             </td>

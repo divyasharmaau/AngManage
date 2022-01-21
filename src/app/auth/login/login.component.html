@@ -27,7 +27,7 @@
             <mat-label>Select your Role</mat-label>
             <mat-select formControlName="userRole" (change)="changeRole($event)" required>
               <mat-option>--</mat-option>
-              <mat-option value="Administartor">Administartor</mat-option>
+              <mat-option value="Administrator">Administrator</mat-option>
               <mat-option  value="Registered User">User</mat-option>
             </mat-select>
             <mat-error *ngIf="hasError('userRole')" class="error-block" >

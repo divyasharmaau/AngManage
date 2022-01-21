@@ -14,9 +14,9 @@
                    <div class="form-group col-md-6" >
                         <label for="photo"> 
                             <div *ngIf = "employeePersonalDetails.photoPath" >
-                                <img src={{employeePersonalDetails.photoPath}} width="150px" />
+                                <img src={{employeePersonalDetails.apiPhotoPath}} width="150px" />
                             </div>
-                            <div *ngIf = "!employeePersonalDetails.photoPath" >
+                            <div *ngIf = "!employeePersonalDetails.apiPhotoPath" >
                                 <img src= "/assets/img/avatar.png" width="150px" />
                             </div>
                         </label>

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/01ebcad7-7a1d-49b6-a051-c839ff297b70/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/ManageAngular2022",
+    "appService.deploySubpath": "dist\\AngManage"
+}

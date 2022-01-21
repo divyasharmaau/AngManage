@@ -49,12 +49,12 @@ export class EmployeeOfficialDetailsComponent implements OnInit {
     {
       return "/assets/img/avatar.png";
     }
-    if(employeeDetails.employeePersonalDetails.photoPath == null)
+    if(employeeDetails.employeePersonalDetails.apiPhotoPath == null)
     {
       return "/assets/img/avatar.png";
     }
   
-      return  employeeDetails.employeePersonalDetails.photoPath;
+      return  employeeDetails.employeePersonalDetails.apiPhotoPath;
    
   }
 
