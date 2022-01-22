@@ -27,3 +27,4 @@ mat-drawer {
   @media screen and (max-width: 1220px)  {
     mat-drawer-content { width: 100%; }
   } 
+

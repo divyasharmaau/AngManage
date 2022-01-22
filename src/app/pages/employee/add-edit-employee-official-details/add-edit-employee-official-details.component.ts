@@ -29,8 +29,9 @@ import { EmployeeService } from '../services/employee.service';
     hidden: boolean = true;
     formTitle : string;
     successMessage : string;
-    @ViewChild("daysWorkedInWeek") daysWorkedInWeek: ElementRef;
-    @ViewChild("numberOfHoursWorkedPerDay") numberOfHoursWorkedPerDay : ElementRef
+    daysWorkedInWeek: number;
+    numberOfHoursWorkedPerDay : number;
+   
     numRegex = /^-?\d*[.,]?\d{0,2}$/;
     
     employeePersonalDetails = <EmployeePersonalDetails>{};
@@ -172,8 +173,8 @@ import { EmployeeService } from '../services/employee.service';
           joiningDate: this.form.value.joiningDate,
           jobTitle: this.form.value.jobTitle,
           status: this.form.value.status,
-          daysWorkedInWeek: this.daysWorkedInWeek.nativeElement.value,
-          numberOfHoursWorkedPerDay: this.numberOfHoursWorkedPerDay.nativeElement.value,
+          daysWorkedInWeek: this.form.value.daysWorkedInWeek,
+          numberOfHoursWorkedPerDay: this.form.value.numberOfHoursWorkedPerDay,
           departmentId: this.form.value.departmentId,
           manager: this.form.value.manager
       }
@@ -197,8 +198,8 @@ import { EmployeeService } from '../services/employee.service';
           joiningDate: this.form.value.joiningDate,
           jobTitle: this.form.value.jobTitle,
           status: this.form.value.status,
-          daysWorkedInWeek: this.daysWorkedInWeek.nativeElement.value,
-          numberOfHoursWorkedPerDay: this.numberOfHoursWorkedPerDay.nativeElement.value,
+          daysWorkedInWeek: this.form.value.daysWorkedInWeek,
+          numberOfHoursWorkedPerDay: this.form.value.numberOfHoursWorkedPerDay,
           departmentId: this.form.value.departmentId,
           manager: this.form.value.manager,
           password: this.form.value.password,
@@ -236,15 +237,25 @@ import { EmployeeService } from '../services/employee.service';
     }
     
     onSelectStatus(event:any){
+
       if(this.form.value.status == "Full-Time"){
-        this.daysWorkedInWeek.nativeElement.value = 5;
-        this.numberOfHoursWorkedPerDay.nativeElement.value = 7.6;
+        this.daysWorkedInWeek = 5;
+        this.numberOfHoursWorkedPerDay = 7.6;
+        
+
       }
       else
       {
-        this.daysWorkedInWeek.nativeElement.value = 0;
-        this.numberOfHoursWorkedPerDay.nativeElement.value = 0;
+        this.daysWorkedInWeek = 0;
+        this.numberOfHoursWorkedPerDay = 0;
       }
+      this.form.patchValue({
+        numberOfHoursWorkedPerDay: this.numberOfHoursWorkedPerDay,
+        daysWorkedInWeek: this.daysWorkedInWeek
+      });
+
+      this.form.get('daysWorkedInWeek').setValidators([Validators.required, Validators.pattern(this.numRegex)]);
+      this.form.get('numberOfHoursWorkedPerDay').setValidators([Validators.required, Validators.pattern(this.numRegex)]);
     }
   
     isReadOnly(){

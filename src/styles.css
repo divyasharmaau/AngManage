@@ -12,6 +12,7 @@
     --errorRed:#a94442;
     --errorGreen: #42A948; 
     --listWhite:#eaeaea;
+    --orange-color: #e9801f;
   }
   
 html, body { height: 100%; }

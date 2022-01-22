@@ -69,7 +69,7 @@ export class LoginComponent extends BaseErrorFormComponent implements OnInit {
   this.authenticationService.login(username,password,userRole)
       .pipe(first())
       .subscribe(data =>{
-        this.router.navigate(['home'])
+        this.router.navigate(['home/dashboard'])
       })
   }
 
@@ -80,7 +80,7 @@ export class LoginComponent extends BaseErrorFormComponent implements OnInit {
   this.authenticationService.login(username,password,userRole)
       .pipe(first())
       .subscribe(data =>{
-        this.router.navigate(['home'])
+        this.router.navigate(['home/dashboard'])
       })
   }
 }

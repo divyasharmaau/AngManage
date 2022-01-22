@@ -25,68 +25,68 @@ import { NotPermittedComponent } from './shared/not-permitted/not-permitted.comp
 
 
 const routes: Routes = [
-    {path:'', component: LoginComponent},
-   
-    {
-      path:'login', component:LoginComponent,
-    },
-    {
-    path:'home' , component: DefaultComponent,
-    children:[
-    
+  { path: '', component: LoginComponent },
+
+  {
+    path: 'login', component: LoginComponent,
+  },
+  {
+    path: 'home', component: DefaultComponent,
+    children: [
+
       {
-      path:'dashboard', component: DashboardComponent
-    }
-    ,{ 
-      path: 'employeeList', component:EmployeeListComponent, canActivate:[RoleGuard]
-    },
-    {
-      path:'employeeOfficialDetails/:id', component:EmployeeOfficialDetailsComponent
-    },
-    {
-      path:'employeePersonalDetails/:id', component:EmployeePersonalDetailsComponent
-    },
-    { 
-      path:'employeeDetails/:id', component:EmployeeDetailsComponent
-    },
-    {
-      path:'addEmployeeOfficialDetails', component:AddEditEmployeeOfficialDetailsComponent, canActivate:[RoleGuard]
-    },
-    {
-      path:'editEmployeeOfficialDetails/:id', component:AddEditEmployeeOfficialDetailsComponent, canActivate:[RoleGuard]
-    },
-    {
-      path:'addEmployeePersonalDetails/:id', component:AddEditEmployeePersonalDetailsComponent
-    },
-    {
-      path:'editEmployeePersonalDetails/:id', component:AddEditEmployeePersonalDetailsComponent
-    },
-    {
-      path:'applyLeave', component:ApplyLeaveComponent
-    },
-    {
-      path:'leaveList', component:LeaveListComponent, canActivate:[RoleGuard]
-    },
-    {
-      path:'myLeaveList/:id', component:MyLeaveListComponent
-    },
-    {
-      path:'editMyLeave/:id', component:EditMyLeaveComponent
-    },
-    {
-      path:'myLeaveDetails/:id', component:MyLeaveDetailsComponent
-    },
-    {
-      path:'editLeaveAdmin/:id', component:EditLeaveAdminComponent, canActivate:[RoleGuard]
-    }
-      ], canActivate:[AuthGuard]
-    },
-    {
-      path:'notPermitted', component:NotPermittedComponent
-    },
-    {
-      path:'**', component:PageNotFoundComponent
-    }
+        path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'employeeList', component: EmployeeListComponent, canActivate: [RoleGuard]
+      },
+      {
+        path: 'employeeOfficialDetails/:id', component: EmployeeOfficialDetailsComponent
+      },
+      {
+        path: 'employeePersonalDetails/:id', component: EmployeePersonalDetailsComponent
+      },
+      {
+        path: 'employeeDetails/:id', component: EmployeeDetailsComponent
+      },
+      {
+        path: 'addEmployeeOfficialDetails', component: AddEditEmployeeOfficialDetailsComponent, canActivate: [RoleGuard]
+      },
+      {
+        path: 'editEmployeeOfficialDetails/:id', component: AddEditEmployeeOfficialDetailsComponent, canActivate: [RoleGuard]
+      },
+      {
+        path: 'addEmployeePersonalDetails/:id', component: AddEditEmployeePersonalDetailsComponent
+      },
+      {
+        path: 'editEmployeePersonalDetails/:id', component: AddEditEmployeePersonalDetailsComponent
+      },
+      {
+        path: 'applyLeave', component: ApplyLeaveComponent
+      },
+      {
+        path: 'leaveList', component: LeaveListComponent, canActivate: [RoleGuard]
+      },
+      {
+        path: 'myLeaveList/:id', component: MyLeaveListComponent
+      },
+      {
+        path: 'editMyLeave/:id', component: EditMyLeaveComponent
+      },
+      {
+        path: 'myLeaveDetails/:id', component: MyLeaveDetailsComponent
+      },
+      {
+        path: 'editLeaveAdmin/:id', component: EditLeaveAdminComponent, canActivate: [RoleGuard]
+      }
+    ], canActivate: [AuthGuard]
+  },
+  {
+    path: 'notPermitted', component: NotPermittedComponent
+  },
+  {
+    path: '**', component: PageNotFoundComponent
+  }
 
 ];
 

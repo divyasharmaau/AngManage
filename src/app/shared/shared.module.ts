@@ -26,6 +26,7 @@ import {MatCardModule} from '@angular/material/card';
 
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -33,6 +34,7 @@ import {MatCardModule} from '@angular/material/card';
     FooterComponent,
     PageNotFoundComponent,
     NotPermittedComponent
+
   ],
   imports: [
     CommonModule,

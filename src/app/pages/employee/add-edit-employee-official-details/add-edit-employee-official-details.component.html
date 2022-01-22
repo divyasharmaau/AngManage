@@ -150,7 +150,7 @@
                             <div class="form-group col-sm-12 col-lg-4">
                                 <label for="daysWorkedInWeek">Days Worked In Week</label>
                                 <input type="number" class="form-control" placeholder="Days Worked In Week"
-                                    #daysWorkedInWeek [readonly]="isReadOnly()" formControlName="daysWorkedInWeek"
+                                   [readonly]="isReadOnly()" formControlName="daysWorkedInWeek"
                                     id="daysWorkedInWeek" name="daysWorkedInWeek">
                                 <div *ngIf="hasError('daysWorkedInWeek')" class="error-block">
                                     Days Worked In Week is a required field.
@@ -159,7 +159,7 @@
                             <div class="form-group col-sm-12 col-lg-4">
                                 <label for="numberOfHoursWorkedPerDay">Number Of Hours Worked Per Day</label>
                                 <input type="number" class="form-control" placeholder="Number Of Hours Worked Per Day"
-                                    #numberOfHoursWorkedPerDay [readonly]="isReadOnly()"
+                                    [readonly]="isReadOnly()"
                                     formControlName="numberOfHoursWorkedPerDay" id="numberOfHoursWorkedPerDay">
                                 <div *ngIf="hasError('numberOfHoursWorkedPerDay')" class="error-block">
                                     Number Of Hours Worked Per Day is a required field.
