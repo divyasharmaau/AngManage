@@ -35,7 +35,11 @@
                 <div *ngIf ="employee.employeePersonalDetails">
                  <img src={{employee.employeePersonalDetails.apiPhotoPath}}  style="width:30px; border-radius: 50%;"/>   
                 </div>
-            
+             
+                <div *ngIf ="!(employee.employeePersonalDetails )" >
+                  <img src= "/assets/img/avatar.png" style="width:30px; border-radius: 50%;"/>   
+                 </div>
+           
             </td>
           </ng-container>
     

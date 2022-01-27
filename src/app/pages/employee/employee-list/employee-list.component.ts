@@ -15,6 +15,8 @@ import { EmployeeService } from '../services/employee.service';
 export class EmployeeListComponent implements OnInit {
 
   textSearch : string="";
+ 
+  profilePic :string ="";
   employeeList : any;
   displayedColumns: string[] = ['employeePersonalDetails.apiPhotoPath','fullName', 'department.name','status','manager', 'email'];
 
@@ -26,8 +28,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(private employeeService: EmployeeService,
   
     ) { 
-   
-   
+
 }
 
   ngOnInit(): void {
@@ -48,6 +49,7 @@ export class EmployeeListComponent implements OnInit {
      
     });
   }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
