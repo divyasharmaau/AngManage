@@ -71,28 +71,37 @@ export class EditLeaveAdminComponent  extends BaseErrorFormComponent implements 
           this.approveButton = true;
         }
 
-   
+        alert(this.leaveDetails.filePath + "this.leaveDetails.filePath");
         this.form.get('comment').setValue(this.leaveDetails.comment);
         this.form.get('leaveStatus').setValue(this.leaveDetails.leaveStatus);
-        this.form.get('currentDate').setValue(moment(this.leaveDetails.currentDate).format('DD-MM-YYYY'));
-        this.form.get('joiningDate').setValue(moment(this.leaveDetails.joiningDate).format('DD-MM-YYYY'))
-        this.form.get('fromDate').setValue(moment(this.leaveDetails.fromDate).format('DD-MM-YYYY'));
-        this.form.get('tillDate').setValue(moment(this.leaveDetails.tillDate).format('DD-MM-YYYY'));
+        //(moment(new Date(this.form.value.fromDate)).format("YYYY-MM-DD").toString()));
+        // this.form.get('currentDate').setValue(moment(this.leaveDetails.currentDate).format('DD-MM-YYYY'));
+        // this.form.get('joiningDate').setValue(moment(this.leaveDetails.joiningDate).format('DD-MM-YYYY'))
+        // this.form.get('fromDate').setValue(moment(this.leaveDetails.fromDate).format('DD-MM-YYYY'));
+        // this.form.get('tillDate').setValue(moment(this.leaveDetails.tillDate).format('DD-MM-YYYY'));
+   
+        this.form.get('currentDate').setValue(moment(this.leaveDetails.currentDate).format('YYYY-MM-DD'));
+        this.form.get('joiningDate').setValue(moment(this.leaveDetails.joiningDate).format('YYYY-MM-DD'));
+        this.form.get('fromDate').setValue(moment(this.leaveDetails.fromDate).format('YYYY-MM-DD'));
+        this.form.get('tillDate').setValue(moment(this.leaveDetails.tillDate).format('YYYY-MM-DD'));
         this.form.get('leaveType').setValue(this.leaveDetails.leaveType);
         this.form.get('duration').setValue(this.leaveDetails.duration);
         this.form.get('reason').setValue(this.leaveDetails.reason);
         this.form.get('filePath').setValue(this.getFileName(this.leaveDetails.filePath));
+        //this.form.get('filePath').setValue(this.leaveDetails.filePath);
+
         this.form.get('balanceAnnualLeave').setValue(this.leaveDetails.balanceAnnualLeave);
         this.form.get('balanceSickLeave').setValue(this.leaveDetails.balanceSickLeave);
+    
         this.form.get('approved').setValue('');
         this.form.get('declined').setValue('');
-
       }
       );
   }
 
 getFileName(fileName:string){
   let name = this.leaveDetails.filePath.split('_');
+
   return this.fileName = name[1];
 }
   onSubmit() {

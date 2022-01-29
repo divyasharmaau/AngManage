@@ -59,6 +59,7 @@ export class MyLeaveDetailsComponent implements OnInit {
           this.form.get('duration').setValue(this.leave.duration);
           this.form.get('comment').setValue(this.leave.comment);
           this.form.get('reason').setValue(this.leave.reason);
+          //this.form.get('filePath').setValue(this.leave.filePath);
           this.form.get('filePath').setValue(this.getFileName(this.leave.filePath));
           this.form.get('balanceAnnualLeave').setValue(this.leave.balanceAnnualLeave);
           this.form.get('balanceSickLeave').setValue(this.leave.balanceSickLeave);
@@ -74,8 +75,10 @@ export class MyLeaveDetailsComponent implements OnInit {
 
 
  getFileName(fileName:string){
-  let x =  this.leave.filePath.split('/');
-  return this.fileName = x[5];
+  // let x =  this.leave.filePath.split('/');
+  // return this.fileName = x[5];
+  let name = this.leave.filePath.split('_');
+  return this.fileName = name[1];
  }
 
   showMyLeaveDetails(id: number){

@@ -16,6 +16,7 @@
                 <mat-card-content>
                     <div class="row mb-3 mt-3">
                         <div class="col-md-6">
+
                                 <mat-form-field class="full-width" appearance="standard">
                                     <mat-label>Date On Which Applied</mat-label>
                                     <input formControlName="currentDate" matInput placeholder="Date Applied" readonly>
@@ -105,13 +106,13 @@
                             <ul>
                                 <li>
                                    Annual Leave Balance:
-                                   <input formControlName="balanceAnnualLeave" matInput placeholder="balanceAnnualLeave">
-                                    <!-- <span>{{leaveDetails.balanceAnnualLeave | number : '1.2-2'}}</span> <br> -->
+                                   <!-- <input formControlName="balanceAnnualLeave" matInput placeholder="balanceAnnualLeave"> -->
+                                    <span>{{leaveDetails.balanceAnnualLeave | number : '1.2-2'}}</span> <br>
                                 </li>
                                 <li>
                                     Sick Leave Balance :
-                                     <input formControlName="balanceSickLeave" matInput placeholder="balanceSickLeave">
-                                     <!-- :<span>{{leaveDetails.balanceSickLeave | number : '1.2-2' }}</span> -->
+                                     <!-- <input formControlName="balanceSickLeave" matInput placeholder="balanceSickLeave"> -->
+                                     <span>{{leaveDetails.balanceSickLeave | number : '1.2-2' }}</span>
                                 </li>
                             </ul>
                         </div>

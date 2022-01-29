@@ -70,15 +70,20 @@ export class EditMyLeaveComponent  extends BaseErrorFormComponent implements OnI
     .subscribe(data =>
       {
    
+
           this.leaveDetails = data;
-          this.form.get('currentDate').setValue (moment(this.leaveDetails.currentDate).format('DD-MM-YYYY'));
-          this.form.get('joiningDate').setValue(moment(this.leaveDetails.joiningDate).format('DD-MM-YYYY'));
+          // formData.append('FromDate', (moment(new Date(this.form.value.fromDate)).format("YYYY-MM-DD").toString()));
+          //this.form.get('currentDate').setValue(moment(new Date(this.form.value.currentDate)).format("DD-MM-YYYY").toString());
+            this.form.get('currentDate').setValue (moment(this.leaveDetails.currentDate).format('YYYY-MM-DD'));
+         // this.form.get('joiningDate').setValue(moment(this.leaveDetails.joiningDate).format('DD-MM-YYYY'));
+         this.form.get('joiningDate').setValue(moment(this.leaveDetails.joiningDate).format('YYYY-MM-DD'));
           this.form.get('fromDate').setValue(this.leaveDetails.fromDate);
           this.form.get('tillDate').setValue(this.leaveDetails.tillDate);
           this.form.get('leaveType').setValue(this.leaveDetails.leaveType);
           this.form.get('duration').setValue(this.leaveDetails.duration);
           this.form.get('reason').setValue(this.leaveDetails.reason);
           this.form.get('filePath').setValue( this.getFileName(this.leaveDetails.filePath));
+         //this.form.get('filePath').setValue( this.leaveDetails.filePath);
           this.form.get('balanceAnnualLeave').setValue(this.leaveDetails.balanceAnnualLeave);
           this.form.get('balanceSickLeave').setValue(this.leaveDetails.balanceSickLeave);
    
@@ -104,9 +109,10 @@ export class EditMyLeaveComponent  extends BaseErrorFormComponent implements OnI
         leaveType: this.leaveDetails.leaveType || '',
         duration: this.leaveDetails.duration || '',
         reason: this.leaveDetails.reason || '',
+        filePath: this.leaveDetails.filePath || '',
         balanceAnnualLeave: this.leaveDetails.balanceAnnualLeave || '',
         balanceSickLeave: this.leaveDetails.balanceSickLeave || '',
-        filePath: this.leaveDetails.filePath || ''
+       
        });
     }
 
@@ -142,18 +148,19 @@ export class EditMyLeaveComponent  extends BaseErrorFormComponent implements OnI
   }
     onSubmit(){
       const formData = new FormData();
-      formData.append('currentDate', this.form.value.currentDate);
+       formData.append('currentDate',  (moment(new Date(this.form.value.currentDate)).format("YYYY-MM-DD").toString()));
+      //formData.append('currentDate', this.form.value.currentDate);
       formData.append('joiningDate', this.form.value.joiningDate);
-      formData.append('fromDate', (moment(this.form.value.fromDate).format('DD-MM-YYYY')).toString());
-      formData.append('tillDate', (moment(this.form.value.tillDate).format('DD-MM-YYYY')).toString());
+      formData.append('fromDate', (moment(new Date(this.form.value.fromDate)).format("YYYY-MM-DD").toString()));
+      formData.append('tillDate',  (moment(new Date(this.form.value.tillDate)).format("YYYY-MM-DD").toString()));
       formData.append('leaveType', this.form.value.leaveType);
       formData.append('duration', this.form.value.duration);
       formData.append('reason', this.form.value.reason);
       formData.append('id' , this.leaveId.toString());
-      formData.append('balanceAnnualLeave', this.form.value.balanceAnnualLeave);
-      formData.append('balanceSickLeave', this.form.value.balanceSickLeave);
+      // formData.append('filePath', this.leaveDetails.filePath); // this property is fetch from database while saving.
       formData.append('file',this.selectedFile);
-     
+      // formData.append('balanceAnnualLeave', this.form.value.balanceAnnualLeave);
+      // formData.append('balanceSickLeave', this.form.value.balanceSickLeave);
       this.leaveService.editLeave(this.leaveDetails.id, formData)
       .subscribe(data =>{
         this.leaveEdited = true;
@@ -172,10 +179,15 @@ export class EditMyLeaveComponent  extends BaseErrorFormComponent implements OnI
                 }
                 reader.readAsDataURL(event.target.files[0]);
             }
-            else
+            // else if(this.leaveDetails.filePath != null)
+            //   {
+            //     this.url = this.getFileName(this.leaveDetails.filePath)
+            //   }
+          else
             {
               this.url = "";
             }
+          
       
       }
 }

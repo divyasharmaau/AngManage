@@ -128,8 +128,8 @@ export class ApplyLeaveComponent extends BaseErrorFormComponent implements OnIni
     formData.append('UserId', userId);
     formData.append('CurrentDate', this.leave.currentDate.toString());
     formData.append('joiningDate', this.form.value.joiningDate);
-    formData.append('FromDate', (moment(new Date(this.form.value.fromDate)).format("DD/MM/YYYY").toString()));
-    formData.append('TillDate', (moment(new Date(this.form.value.fromDate)).format("DD/MM/YYYY").toString()));
+    formData.append('FromDate', (moment(new Date(this.form.value.fromDate)).format("YYYY-MM-DD").toString()));
+    formData.append('TillDate', (moment(new Date(this.form.value.tillDate)).format("YYYY-MM-DD").toString()));
     formData.append('LeaveType', this.form.value.leaveType);
     formData.append('Duration', this.form.value.duration);
     formData.append('Reason', this.form.value.reason);
