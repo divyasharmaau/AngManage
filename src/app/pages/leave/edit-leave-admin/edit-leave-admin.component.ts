@@ -4,10 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { BaseErrorFormComponent } from 'src/app/shared/baseErrorFormComponent';
-
+import { environment } from 'src/environments/environment';
 import { EmployeeLeave } from '../interfaces/employeeLeave';
 import { Leave } from '../interfaces/leave';
-
 import { LeaveService } from '../services/leave.service';
 
 @Component({
@@ -28,7 +27,7 @@ export class EditLeaveAdminComponent  extends BaseErrorFormComponent implements 
   successMessage: string ="The Leave has been Edited";
   leaveEdited: boolean = false;
   fileName:string="";
-
+  baseUrl = environment.baseUrl;
   constructor(private leaveService: LeaveService, private activatedRoute: ActivatedRoute, private http: HttpClient,
     private fb: FormBuilder) {
       super();
@@ -71,15 +70,8 @@ export class EditLeaveAdminComponent  extends BaseErrorFormComponent implements 
           this.approveButton = true;
         }
 
-        alert(this.leaveDetails.filePath + "this.leaveDetails.filePath");
         this.form.get('comment').setValue(this.leaveDetails.comment);
         this.form.get('leaveStatus').setValue(this.leaveDetails.leaveStatus);
-        //(moment(new Date(this.form.value.fromDate)).format("YYYY-MM-DD").toString()));
-        // this.form.get('currentDate').setValue(moment(this.leaveDetails.currentDate).format('DD-MM-YYYY'));
-        // this.form.get('joiningDate').setValue(moment(this.leaveDetails.joiningDate).format('DD-MM-YYYY'))
-        // this.form.get('fromDate').setValue(moment(this.leaveDetails.fromDate).format('DD-MM-YYYY'));
-        // this.form.get('tillDate').setValue(moment(this.leaveDetails.tillDate).format('DD-MM-YYYY'));
-   
         this.form.get('currentDate').setValue(moment(this.leaveDetails.currentDate).format('YYYY-MM-DD'));
         this.form.get('joiningDate').setValue(moment(this.leaveDetails.joiningDate).format('YYYY-MM-DD'));
         this.form.get('fromDate').setValue(moment(this.leaveDetails.fromDate).format('YYYY-MM-DD'));
@@ -88,11 +80,8 @@ export class EditLeaveAdminComponent  extends BaseErrorFormComponent implements 
         this.form.get('duration').setValue(this.leaveDetails.duration);
         this.form.get('reason').setValue(this.leaveDetails.reason);
         this.form.get('filePath').setValue(this.getFileName(this.leaveDetails.filePath));
-        //this.form.get('filePath').setValue(this.leaveDetails.filePath);
-
         this.form.get('balanceAnnualLeave').setValue(this.leaveDetails.balanceAnnualLeave);
         this.form.get('balanceSickLeave').setValue(this.leaveDetails.balanceSickLeave);
-    
         this.form.get('approved').setValue('');
         this.form.get('declined').setValue('');
       }
@@ -113,20 +102,23 @@ getFileName(fileName:string){
         'declined': 'declined',
 
       }
+
+    
     if (lId == "approvedId") {
       const body = {
         'leaveId': this.idLeave,
         'comment': this.form.value.comment,
         'approved': 'approved',
       }
-      this.http.put<EmployeeLeave>('https://localhost:44330/api/leave/LeaveStatusByAdmin', body)
+    
+      this.leaveService.leaveStatusByAdmin(body)
         .subscribe(data => {
           this.employeeLeave = data;
           this.leaveEdited = true;
         })
     }
     else if(lId == "declinedId") {
-      this.http.put<EmployeeLeave>('https://localhost:44330/api/leave/LeaveStatusByAdmin', body)
+      this.leaveService.leaveStatusByAdmin(body)
         .subscribe(data => {
           this.employeeLeave = data;
           this.leaveEdited = true;

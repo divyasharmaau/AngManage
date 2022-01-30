@@ -45,11 +45,5 @@ export class EmployeeService {
     return this.http.put<EmployeePersonalDetails>(this.baseUrl + '/employee/UpdateEmployeePersonalDetails/' + id, employeePersonalDetails);
   }
 
-  search(searchTerm: string) {
-    return this.http.get<Employee[]>(this.baseUrl + '/employee/Search/' + searchTerm);
-  }
-
-  getDataSynchronous(searchTerm: string) {
-    return this.http.get<Employee[]>(this.baseUrl + '/api/employee/Search/' + searchTerm).toPromise()
-  }
+ 
 }   

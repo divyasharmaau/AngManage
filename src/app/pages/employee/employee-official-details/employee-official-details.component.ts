@@ -62,8 +62,6 @@ export class EmployeeOfficialDetailsComponent implements OnInit {
 
 
   clickCloseOfficial(){
-    alert("clickCloseOfficial");
-  
     this.router.navigate['/admin/list'];
   }
 }

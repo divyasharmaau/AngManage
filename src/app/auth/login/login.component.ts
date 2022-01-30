@@ -53,13 +53,10 @@ export class LoginComponent extends BaseErrorFormComponent implements OnInit {
   
     this.selectRole().setValue(e.target.value,{
          //only if this value is true the form will be submitted
-         onlySelf: true})
-         alert(e.target.value + "e.target.value");
-        
+         onlySelf: true})  
   }
 
   selectRole(){
-   alert(this.form.get('userRole'));
     return this.form.get('userRole');
   }
   onSubmitDemoAdmin(){

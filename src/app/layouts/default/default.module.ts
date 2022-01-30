@@ -39,7 +39,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { EditMyLeaveComponent } from 'src/app/pages/leave/edit-my-leave/edit-my-leave.component';
 import { MyLeaveDetailsComponent } from 'src/app/pages/leave/my-leave-details/my-leave-details.component';
 import { EditLeaveAdminComponent } from 'src/app/pages/leave/edit-leave-admin/edit-leave-admin.component';
-//import { CustomErrorValidationComponent } from 'src/app/pages/employee/custom-error-validation/custom-error-validation.component';
 
 
 @NgModule({
@@ -58,8 +57,7 @@ import { EditLeaveAdminComponent } from 'src/app/pages/leave/edit-leave-admin/ed
     MatConfirmDialogComponent,
     EditMyLeaveComponent,
     MyLeaveDetailsComponent,
-    EditLeaveAdminComponent,
-    //CustomErrorValidationComponent,
+    EditLeaveAdminComponent
   
   ],
   imports: [

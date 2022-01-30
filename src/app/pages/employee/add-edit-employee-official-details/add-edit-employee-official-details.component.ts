@@ -241,7 +241,6 @@ import { EmployeeService } from '../services/employee.service';
       if(this.form.value.status == "Full-Time"){
         this.daysWorkedInWeek = 5;
         this.numberOfHoursWorkedPerDay = 7.6;
-        
 
       }
       else

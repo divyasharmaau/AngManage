@@ -20,13 +20,6 @@ import { NotPermittedComponent } from './not-permitted/not-permitted.component';
 import {MatCardModule} from '@angular/material/card';
 
 
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
     HeaderComponent,

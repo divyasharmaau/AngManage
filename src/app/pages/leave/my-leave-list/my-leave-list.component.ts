@@ -90,7 +90,6 @@ changeEvent(event){
 }
 searchLeaveType(event: Event){
   const filterValue = (event.target as HTMLOptionElement).value;
-  alert(filterValue + "serach");
   this.employeeLeaves.filter = filterValue;
   if (this.employeeLeaves.paginator) {
     this.employeeLeaves.paginator.firstPage();

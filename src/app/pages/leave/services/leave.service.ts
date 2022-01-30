@@ -18,12 +18,10 @@ export class LeaveService {
     return this.http.get<Leave>(this.baseUrl + '/leave/ApplyLeaveGet/'+ id);
   }
   applyLeave(id:string, model: FormData){
-    alert("hi from service");
     return this.http.post<Leave>(this.baseUrl + '/leave/ApplyLeave/', model);
   }
 
   getAllLeaves(fromDate:any){
-    alert("get all leave service");
     if(fromDate == null ){
       return  this.http.get<AppUserLeaveModel[]>(this.baseUrl + '/leave/')
     }  
@@ -63,7 +61,7 @@ export class LeaveService {
     return this.http.delete(this.baseUrl + '/leave/' + id);
   }
 
-  leaveStatusByAdmin(employeeLeave: EmployeeLeave){
+  leaveStatusByAdmin(employeeLeave: any){
 
     return this.http.put<EmployeeLeave>(this.baseUrl + '/leave/LeaveStatusByAdmin', employeeLeave );
   }

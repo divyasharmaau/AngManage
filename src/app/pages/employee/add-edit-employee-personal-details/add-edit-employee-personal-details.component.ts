@@ -56,10 +56,8 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
         if (this.empOfficialDetails.employeePersonalDetails == null) {
           this.createForm();
           this.defaultPhoto = this.defaultProfilePhoto(this.empOfficialDetails);
-          alert(this.defaultPhoto);
           this.formTitle = "Add Employee Personal Details";
           this.successMessage = "Employee Personal Details Added";
-          //this.employeeCreatedOrUpdated = true;
         }
         else {
           this.editMode = true;
@@ -172,7 +170,6 @@ export class AddEditEmployeePersonalDetailsComponent extends BaseErrorFormCompon
 //interface is not required as the we are collecting the data directly from the form
   onSubmit() {
     if (this.editMode) {
-      alert(this.empOfficialDetails.employeePersonalDetails.photoPath);
       const formData = new FormData();
       formData.append('id', this.employeeId);
       formData.append('fullName', this.form.value.fullName);

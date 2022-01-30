@@ -50,7 +50,6 @@ export class AuthenticationService {
         this.setProfilePicture(tokenkDetails.profile_picture_path);
         this.setUser(tokenkDetails.user_name);
       }
-      alert(this.baseUrl + "hello");
       return tokenkDetails;
     }))
   }
@@ -109,11 +108,9 @@ export class AuthenticationService {
 
   setProfilePicture(profilePicture : string | null): boolean{
     if(isPlatformBrowser(this.platformId)){
-     // alert("auth service: profilePicture" + profilePicture);
       if(profilePicture){
         localStorage.setItem(
           this.profilePictureKey, profilePicture); 
-         // alert("auth service: profilePictureKey" + this.profilePictureKey);
       }
       else{
         localStorage.removeItem(this.profilePictureKey);
@@ -123,7 +120,6 @@ export class AuthenticationService {
   }
   getProfilePicture(){
     var result =  localStorage.getItem(this.profilePictureKey);
-   // alert("auth service this.profilePictureKey" + this.profilePictureKey);
     if(result )
     {
       return result;
