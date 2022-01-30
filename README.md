@@ -65,9 +65,12 @@ Apply Leave <br><br>
 ![AngManageApplyLeave2](https://user-images.githubusercontent.com/37268175/151432669-dda34ebf-36ed-42a0-b695-08c93e49290b.png)
 
 Employee Leave List with Search Block<br><br>
+![AngManageEmpLeaveList2](https://user-images.githubusercontent.com/37268175/151682005-561d0b74-9ece-481f-a1e7-3c0ce2b5d84c.png)
 
 
 All Employee Leave List with Search Block<br><br>
+![AngManageAllEmployeeLeaveList2](https://user-images.githubusercontent.com/37268175/151681963-1ffcbc05-7b5c-40bb-952f-39303e4d6587.png)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
 
