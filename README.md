@@ -45,6 +45,7 @@ Administrartor Menu <br><br>
 
 Registered User/Employee Menu <br><br>
 ![AngManageUserMenu2](https://user-images.githubusercontent.com/37268175/151433298-f93a6a5f-ee13-42e4-88d1-b16f6f57a802.png)
+
 Employee:<br><br>
 Employee List<br><br>
 ![AngManageEmpList2](https://user-images.githubusercontent.com/37268175/151432218-5ec04ed9-2250-4978-94b4-a888b67057e9.png)
